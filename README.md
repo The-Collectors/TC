@@ -25,7 +25,7 @@ Directions to install necessary packages and dependencies for the project. First
 2. Connect to localhost, and then click 'Create database'
 3. Enter 'TheCollectors' for Database Name, and 'Clubs' for Collection Name.
     - now you will have TheCollectors.Clubs database.
-4. Go to TC\backend\external data, and find 'Clubs.json' file.
+4. Go to TC\backend\external data from your workspace (should be downloaded by repository cloning), and find 'Clubs.json' file.
 5. From MongoDB Compass, click ADD DATA and select Import JSON or CSV file.
 6. Import 'Clubs.json' from TC\backend\external data.
 
