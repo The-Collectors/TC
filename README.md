@@ -2,12 +2,8 @@
 The Collectors was originated by a team of students working on a project for the Software Design & Documentations course at Rensselaer Polytechnic Institute.
 This project's purpose and design is to consolidate all clubs and organizations affiliated with RPI.
 
-## Team Members
-Justin Chang  
-Charles Chae  
-David Finck  
-Junseob Kim  
-Bill Wang  
+## Team Lead
+Jun - 
 
 ## How to set up the development environment
 Directions to install necessary packages and dependencies for the project. First clone the repository on your machine.
@@ -22,6 +18,7 @@ Directions to install necessary packages and dependencies for the project. First
 1. Download the MongoDB Community Server at https://www.mongodb.com/try/download/community
 2. Make sure *install MongoDB Compass* is checked. You can also download at https://www.mongodb.com/try/download/compass
 3. After MongoDB Compass is installed, it should open up with a new connection window. Save and connect the default connection.
+    - note: for new connection, use 'mongodb://localhost:27017' as default.
 
 ### Installing Packages and Dependencies
 1. Download and install latest Node.js at https://nodejs.org/en. This will also download npm which we need. Check *automatically install necessary tools* when prompted. Restart your computer.
