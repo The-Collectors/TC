@@ -22,10 +22,12 @@ Directions to install necessary packages and dependencies for the project. First
 
 ### Importing Database
 1. Open MongoDB Compass.
-2. Connect to localhost, and from left dropdown list, open 'TheCollectors' and then open 'Clubs'.
-3. Go to TC\backend\external data, and find 'Clubs.json' file.
-4. From MongoDB Compass, click ADD DATA and select Import JSON or CSV file.
-5. Import 'Clubs.json' from TC\backend\external data.
+2. Connect to localhost, and then click 'Create database'
+3. Enter 'TheCollectors' for Database Name, and 'Clubs' for Collection Name.
+    - now you will have TheCollectors.Clubs database.
+4. Go to TC\backend\external data, and find 'Clubs.json' file.
+5. From MongoDB Compass, click ADD DATA and select Import JSON or CSV file.
+6. Import 'Clubs.json' from TC\backend\external data.
 
 ### Installing Packages and Dependencies
 1. Download and install latest Node.js at https://nodejs.org/en. This will also download npm which we need. Check *automatically install necessary tools* when prompted. Restart your computer.
