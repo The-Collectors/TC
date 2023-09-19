@@ -2,8 +2,8 @@
 The Collectors was originated by a team of students working on a project for the Software Design & Documentations course at Rensselaer Polytechnic Institute.
 This project's purpose and design is to consolidate all clubs and organizations affiliated with RPI.
 
-## Team Lead
-Jun - 
+## Team Contact
+Team Lead - UHY#8394 (Discord)
 
 ## How to set up the development environment
 Directions to install necessary packages and dependencies for the project. First clone the repository on your machine.
