@@ -20,6 +20,13 @@ Directions to install necessary packages and dependencies for the project. First
 3. After MongoDB Compass is installed, it should open up with a new connection window. Save and connect the default connection.
     - note: for new connection, use 'mongodb://localhost:27017' as default.
 
+### Importing Database
+1. Open MongoDB Compass.
+2. Connect to localhost, and from left dropdown list, open 'TheCollectors' and then open 'Clubs'.
+3. Go to TC\backend\external data, and find 'Clubs.json' file.
+4. From MongoDB Compass, click ADD DATA and select Import JSON or CSV file.
+5. Import 'Clubs.json' from TC\backend\external data.
+
 ### Installing Packages and Dependencies
 1. Download and install latest Node.js at https://nodejs.org/en. This will also download npm which we need. Check *automatically install necessary tools* when prompted. Restart your computer.
 2. Open up a new terminal and `cd` to the frontend folder. Type `npm install`. This should install all necessary frontend packages.
@@ -31,4 +38,5 @@ Directions for launching the project once the necessary packages have been insta
 1. To start the backend, navigate to the backend folder in the terminal and start a virtual environment with `pipenv shell`. Then type `uvicorn main:app --reload`.
     - note: type `/docs` to the end of the URL to see the FastAPI backend commands.
 2. To start the frontend, navigate to the frontend folder in the terminal and type `npm start`.
+    - It will open new Windows Internet Explorer (or Google Chrome), with http://localhost:3000.
 3. To see the list of clubs in the database, start MongoDB and connect to the localhost database (default - should be saved). You will see *The Collectors* database on the left hand side.
