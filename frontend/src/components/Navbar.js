@@ -32,8 +32,8 @@ function Navbar() {
               Clubs▿ <i className="fa fa-angle-down"></i>
             </NavLink>
             <NavDropdownMenu>
-              <NavLink to="/Clubs">Club List</NavLink>
-              <NavLink to="/Manage_Clubs">Manage Clubs</NavLink>
+              <NavSubLink to="/Clubs">Club List</NavSubLink>
+              <NavSubLink to="/Manage_Clubs">Manage Clubs</NavSubLink>
             </NavDropdownMenu>
           </NavDropdown>
           <NavDropdown>
@@ -43,8 +43,8 @@ function Navbar() {
             <NavDropdownMenu style={{
               minWidth: '200px'
             }}>
-              <NavLink to="/Organizations">Organization List</NavLink>
-              <NavLink to="/Manage_Organizations">Manage Organizations</NavLink>
+              <NavSubLink to="/Organizations">Organization List</NavSubLink>
+              <NavSubLink to="/Manage_Organizations">Manage Organizations</NavSubLink>
             </NavDropdownMenu>
           </NavDropdown>
           <NavDropdown>
@@ -52,8 +52,8 @@ function Navbar() {
               Events▿ <i className="fa fa-angle-down"></i>
             </NavLink>
             <NavDropdownMenu>
-              <NavLink to="/Search_Events">Search Events</NavLink>
-              <NavLink to="/Manage_Events">Manage Events</NavLink>
+              <NavSubLink to="/Search_Events">Search Events</NavSubLink>
+              <NavSubLink to="/Manage_Events">Manage Events</NavSubLink>
             </NavDropdownMenu>
           </NavDropdown>
           <NavLink to="/Calendar">
@@ -129,6 +129,20 @@ export const NavMenu = styled.div`
 `;
 
 export const NavLink = styled(Link)`
+  color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  &.active {
+    color: #000000;
+  }
+`;
+
+export const NavSubLink = styled(Link)`
   color: #f0f0f0;
   display: flex;
   align-items: center;
