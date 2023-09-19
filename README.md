@@ -7,6 +7,7 @@ Team Lead - UHY#8394 (Discord)
 
 ## How to set up the development environment
 Directions to install necessary packages and dependencies for the project. First clone the repository on your machine.
+    - note: we highly recommend you to use Github Desktop with VScode.
 
 ### Installing Python
 1. Download and install latest Python at https://www.python.org/downloads/
