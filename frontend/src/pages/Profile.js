@@ -7,40 +7,40 @@ import { useAuth } from '../components/AuthContext';
 import styled from 'styled-components';
 
 function Profile() {
-  const [user, setUser] = useState({});
-  const [rcsid, setRcsid] = useState('');
-  
-  const { authData } = useAuth();
-  const email = authData.data.user;
+	const [user, setUser] = useState({});
+	const [rcsid, setRcsid] = useState('');
 
-  useEffect(() => {
-    async function fetchUserProfile() {
-      const response = await axios.get(`http://localhost:8000/api/profile/${email}`);
-      setRcsid(response.data.rcsid);
-      setUser(response.data);
-    }
-    fetchUserProfile();
-  }, [email]);
+	const { authData } = useAuth();
+	const email = authData.data.user;
 
-  return (
-    <ProfileContainer style={{ backgroundImage: `url(${Bgimg})` }}>
-      <ProfileCard className="App">
-        <ProfileHeader>Profile</ProfileHeader>
-        <UserInfo>
-          <p>RCSID: {rcsid}</p>
-          <p>Email: {email}</p>
-          <p>Major: {user.major}</p>
-          <p>Graduate Year: {user.graduate_year}</p>
-          <p>Discord: {user.discord}</p>
-          <p>Description: {user.description}</p>
-        </UserInfo>
-        <ButtonContainer>
-          <UpdateLink to="/profile-edit">Update</UpdateLink>
-          <HomeLink to="/">Home</HomeLink>
-        </ButtonContainer>
-      </ProfileCard>
-    </ProfileContainer>
-  );
+	useEffect(() => {
+		async function fetchUserProfile() {
+			const response = await axios.get(`http://localhost:8000/api/profile/${email}`);
+			setRcsid(response.data.rcsid);
+			setUser(response.data);
+		}
+		fetchUserProfile();
+	}, [email]);
+
+	return (
+		<ProfileContainer style={{ backgroundImage: `url(${Bgimg})` }}>
+			<ProfileCard className="App">
+				<ProfileHeader>Profile</ProfileHeader>
+				<UserInfo>
+					<p>RCSID: {rcsid}</p>
+					<p>Email: {email}</p>
+					<p>Major: {user.major}</p>
+					<p>Graduate Year: {user.graduate_year}</p>
+					<p>Discord: {user.discord}</p>
+					<p>Description: {user.description}</p>
+				</UserInfo>
+				<ButtonContainer>
+					<UpdateLink to="/profile-edit">Update</UpdateLink>
+					<HomeLink to="/">Home</HomeLink>
+				</ButtonContainer>
+			</ProfileCard>
+		</ProfileContainer>
+	);
 }
 
 export default Profile;

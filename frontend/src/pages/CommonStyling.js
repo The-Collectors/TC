@@ -16,7 +16,6 @@ export const GlitchHeader = styled.h1`
     color: white;
     font-size: 6em;
     text-align: center;
-    position: 50vw;
 	margin: 0;
 `;
 

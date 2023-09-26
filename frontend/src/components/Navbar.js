@@ -150,7 +150,6 @@ const NavLink = styled(NavSubLink)`
 const NavBtn = styled.nav`
 	display: flex;
 	align-items: center;
-	align: right;
 	margin-right: 24px;
 	@media screen and (max-width: 768px) {
 		display: none;
