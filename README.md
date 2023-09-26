@@ -49,5 +49,6 @@ Directions for launching the project once the necessary packages have been insta
 
 ### Frontend Styling
 1. https://styled-components.com/
+    - For clear visual of styled-components, install vscode-styled-componets from vscode Extentions (Available on the left).
     - Overriding styles only works for (top -> bottom) order.
 
