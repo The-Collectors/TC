@@ -6,7 +6,7 @@ import backgroundImage from '../image/login.png';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import { useUser } from '../components/UserContext';
-import { GlitchHeader, TopDownDiv } from './CommonStyling';
+import { Header, TopDownDiv } from './CommonStyling';
 import styled from 'styled-components';
 
 const Login = () => {
@@ -75,14 +75,15 @@ const Login = () => {
 				</Link>
 			</div>
 			<TopDownDiv>
-				<GlitchHeader> LogIn </GlitchHeader>
+				<LoginHeader> SIGN<br/>IN </LoginHeader>
 				<div className="login-container">
 					{/* Display error message */}
 					{error && <div className="error-message">{error}</div>}
 					<form onSubmit={handleSubmit}>
 						{/* Email input field */}
 						<div className="input-group">
-							<label htmlFor="email">Email</label>
+							<Label> E-Mail </Label>
+							{/*<label htmlFor="email">Email</label>*/}
 							<input
 								type="email"
 								id="email"
@@ -94,7 +95,8 @@ const Login = () => {
 						</div>
 						{/* Password input field */}
 						<div className="input-group">
-							<label htmlFor="password">Password</label>
+							<Label> Password </Label>
+							{/*<label htmlFor="password">Password</label>*/}
 							<input
 								type="password"
 								id="password"
@@ -122,3 +124,13 @@ export default Login;
 
 // >>styles are written here<<
 
+const LoginHeader = styled(Header)`
+	font-family: 'wordclock';
+	line-height: 0.8;
+`;
+
+const Label = styled.label`
+	font-family: 'kodeR';
+	display: block;
+	margin-bottom: 0.5em;
+`

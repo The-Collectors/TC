@@ -11,12 +11,12 @@ export const BgDiv = styled.div`
     text-align: center;
 `;
 
-export const GlitchHeader = styled.h1`
+export const Header = styled.h1`
     font-family: 'glitch';
     color: white;
     font-size: 6em;
     text-align: center;
-	margin: 0;
+	margin: 1px;
 `;
 
 export const TopDownDiv = styled.div`
