@@ -6,6 +6,7 @@ import backgroundImage from '../image/login.png';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import { useUser } from '../components/UserContext';
+import { GlitchHeader } from './CommonStyling';
 
 const Login = () => {
   // Declare state variables for user input
@@ -62,49 +63,59 @@ const Login = () => {
 
   // Render the login form
   return (
-    <div className="login-page-wrapper" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="login-container">
-        <div className="header">
-          <Link to="/" className="header-link">
-            <img src={logo} alt="The Collectors Logo" className="logo" />
-            <span className="header-text">The Collectors</span>
+    <div className="login-page-wrapper list-group-item justify-content-center align-items-center mx-auto" style={{ backgroundImage: `url(${backgroundImage})`,
+    justifyContent: 'center', }}>
+      <div className="header">
+        <Link to="/" className="header-link">
+          <img src={logo} alt="The Collectors Logo" className="logo" />
+          <span className="header-text">The Collectors</span>
+        </Link>
+      </div>
+      <div className="flex-container">
+        <div style={{
+          width: '100%',
+          padding: '0px',
+          margine: '0px',
+        }}>
+            <GlitchHeader> LogIn </GlitchHeader>
+        </div>
+        <div className="login-container">
+          {/* Display error message */}
+          {error && <div className="error-message">{error}</div>}
+          <form onSubmit={handleSubmit}>
+            {/* Email input field */}
+            <div className="input-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            {/* Password input field */}
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Log In</button>
+          </form>
+          {/* Link to the registration page */}
+          <Link to="/Register">
+            <button className="register-button">
+              Register
+            </button>
           </Link>
         </div>
-        {/* Display error message */}
-        {error && <div className="error-message">{error}</div>}
-        <form onSubmit={handleSubmit}>
-          {/* Email input field */}
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          {/* Password input field */}
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit">Log In</button>
-        </form>
-        {/* Link to the registration page */}
-        <Link to="/Register">
-          <button className="register-button">
-            Register
-          </button>
-        </Link>
       </div>
     </div>
   );

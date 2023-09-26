@@ -20,12 +20,14 @@ import OrganizationsPersonal from './pages/OrganizationsPersonal';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import { UserProvider } from './components/UserContext';
+import GlobalFonts from './fonts/fonts';
 
 
 function App() {
 
   return (
     <UserProvider>
+      <GlobalFonts />
       <BrowserRouter>{/*Route (Link) tool that will spread through out to our websites*/}
         <Navbar />{/* Navigation Bar will always on top of every page. */}
           <Routes>

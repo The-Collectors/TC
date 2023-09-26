@@ -128,12 +128,12 @@ export const NavMenu = styled.div`
   };
 `;
 
-export const NavLink = styled(Link)`
+export const NavSubLink = styled(Link)`
   color: #f0f0f0;
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: none;
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
@@ -142,17 +142,8 @@ export const NavLink = styled(Link)`
   }
 `;
 
-export const NavSubLink = styled(Link)`
-  color: #f0f0f0;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0 1rem;
-  height: 100%;
-  cursor: pointer;
-  &.active {
-    color: #000000;
-  }
+export const NavLink = styled(NavSubLink)`
+  font-weight: bold;
 `;
 
 export const NavBtn = styled.nav`

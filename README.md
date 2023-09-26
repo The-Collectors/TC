@@ -43,3 +43,11 @@ Directions for launching the project once the necessary packages have been insta
 2. To start the frontend, navigate to the frontend folder in the terminal (new prompt should be opened for frontend) and type `npm start`.
     - It will open new Windows Internet Explorer (or Google Chrome), with http://localhost:3000.
 3. To see the list of clubs in the database, start MongoDB and connect to the localhost database (default - should be saved). You will see *The Collectors* database on the left hand side.
+
+
+## Helpful Links and Tips
+
+### Frontend Styling
+1. https://styled-components.com/
+    - Overriding styles only works for (top -> bottom) order.
+

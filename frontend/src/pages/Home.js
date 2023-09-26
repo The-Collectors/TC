@@ -3,10 +3,11 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GreekLifeView from '../components/GreekLifeView';
-import Bgimg from './Main_page.png';
 import SearchBar from '../components/SearchBar';
 import ClubCard from '../components/ClubCard';
 import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { BgDiv } from './CommonStyling';
 
 function refreshPage() {
   window.location.reload();
@@ -70,71 +71,67 @@ const handleClubClick = (name) => {
 
   
   return (
-    <div style={{
-      backgroundImage: `url(${Bgimg})`,
-      backgroundRepeat: 'repeat',
-      backgroundPosition: 'center',
-      width: '100vw',
-      height: '100vh',
-      textAlign: 'center',
-  }}>
-    <div className="App list-group-item justify-content-center align-items-center mx-auto" style={{
-      width: "70vw",
-      paddingTop: "100px",
-      justifyContent: 'center',
-      }}>
-      <h1 styleName="max-width: 20rem;" style={{
-        height: '3vh',
-      }}>HELLO AND WELCOME!</h1>
-      <h6>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</h6>
-      <div style={{
-        paddingTop: '1.5vh',
+    <BgDiv>
+      <div className="App list-group-item justify-content-center align-items-center mx-auto" style={{
+        width: "70vw",
+        paddingTop: "100px",
         justifyContent: 'center',
-        alignContent: 'center',
-      }}>
-        <SearchBar onChange={(e) => updateKey(e)} /> {/** When searchbar's input has changed, call updateKey */}
-        <div style={{
-          height: '10px',
-        }} />
-        <div style={{
-          padding: '20px',
-          backgroundColor: '#ffffffa0',
-          borderRadius: '10px',
-          width: '100%',
-          height: '60vh',
-          alignContent: 'top',
-          overflowY: 'auto',
         }}>
-          {filtered.map(it => (
-            <tr
-              key={it.name}
-              onClick={() => handleClubClick(it.name)}
-              style={{ cursor: "pointer" }}
-            >
-              <td>
-                <ul style={{
-                  margin: 20,
-                  listStyle: "none",
-                }}>
-                  <ClubCard clubname={it} />
-                </ul>
-              </td>
-            </tr>
-          ))}
-          <style>
-          {`
-          @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
-          .card-business * {
-            font-family:  'Quicksand',sans-serif;
-          }
-          `}
-          </style>
-          <GreekLifeView key={greekLifeList} greekLifeList={greekLifeList} />
+        <h1 styleName="max-width: 20rem;" style={{
+          height: '3vh',
+        }}>HELLO AND WELCOME!</h1>
+        <h6>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</h6>
+        <div style={{
+          paddingTop: '1.5vh',
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}>
+          <SearchBar onChange={(e) => updateKey(e)} /> {/** When searchbar's input has changed, call updateKey */}
+          <div style={{
+            height: '10px',
+          }} />
+          <div style={{
+            padding: '20px',
+            backgroundColor: '#ffffffa0',
+            borderRadius: '10px',
+            width: '100%',
+            height: '60vh',
+            alignContent: 'top',
+            overflowY: 'auto',
+          }}>
+            {filtered.map(it => (
+              <tr
+                key={it.name}
+                onClick={() => handleClubClick(it.name)}
+                style={{ cursor: "pointer" }}
+              >
+                <td>
+                  <ul style={{
+                    margin: 20,
+                    listStyle: "none",
+                  }}>
+                    <ClubCard clubname={it} />
+                  </ul>
+                </td>
+              </tr>
+            ))}
+            <style>
+            {`
+            @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+            .card-business * {
+              font-family:  'Quicksand',sans-serif;
+            }
+            `}
+            </style>
+            <GreekLifeView key={greekLifeList} greekLifeList={greekLifeList} />
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </BgDiv>
   );
 }
 
 export default Home;
+
+// >>styles are written here<<
+
