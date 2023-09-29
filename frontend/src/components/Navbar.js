@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import '../App.css';
 import styled from 'styled-components';
-import logo from './Logo.png';
+import logo from '../image/Logo.png';
 import { AuthContext, useAuth } from '../components/AuthContext';
+import { TClogo } from '../pages/CommonStyling';
 
 function Navbar() {
 	let location = useLocation(); {/* getting the current location */ }
@@ -23,7 +24,7 @@ function Navbar() {
 			<Nav>
 				<NavMenu>
 					<NavLink to="/">
-						<img src={logo} width={50} height={50} />
+						<TClogo />
 					</NavLink>
 					<NavLink to="/">
 						Home

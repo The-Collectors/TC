@@ -53,4 +53,7 @@ Directions for launching the project once the necessary packages have been insta
 1. https://styled-components.com/
     - For clear visual of styled-components, install vscode-styled-componets from vscode Extentions (Available on the left).
     - Overriding styles only works for (top -> bottom) order.
+2. Fonts are implemented through fonts.js file. Please look through previously implemented code (the @font-face) and implement the other.
+	- Some fonts are not allowed to use, please check the lisence of code carefully.
+	- Some fonts are only applied for caplital letters, please comment it under @font-face when implementing those kinds.
 

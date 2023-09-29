@@ -74,22 +74,6 @@ button:hover {
   background-color: #5a6268;
 }
 
-/* Style the header */
-.header {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-}
-
-/* Style the logo */
-.logo {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
-}
-
 /* Style the header text */
 .header-text {
   font-size: 1.5em;

@@ -77,7 +77,7 @@ function Home() {
 				paddingTop: "100px",
 				justifyContent: 'center',
 			}}>
-				<h1 styleName="max-width: 20rem;" style={{
+				<h1 className="max-width: 20rem;" style={{
 					height: '3vh',
 				}}>HELLO AND WELCOME!</h1>
 				<h6>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</h6>

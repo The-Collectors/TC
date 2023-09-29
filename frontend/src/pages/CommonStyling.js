@@ -1,6 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 import Bgimg from '../image/Main_page.png';
+import MainLogo from '../image/Logo.png';
 
 export const BgDiv = styled.div`
     background-image: url(${Bgimg});
@@ -11,7 +11,7 @@ export const BgDiv = styled.div`
     text-align: center;
 `;
 
-export const Header = styled.h1`
+export const Title = styled.h1`
     font-family: 'glitch';
     color: white;
     font-size: 6em;
@@ -23,5 +23,20 @@ export const TopDownDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+`;
+
+export const TopLinkTitle = styled.div`
+	font-family: 'KodeB';
+	font-size: 1.5em;
+	color: #ffffff;
+	text-align: center;
+`;
+
+export const TClogo = styled.img.attrs((props) => ({
+	src: MainLogo,
+	alt: "The Collectors Logo"
+}))`
+	width: 50px;
+	height: 50px;
 `;
 

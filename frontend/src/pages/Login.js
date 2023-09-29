@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
-import logo from '../components/Logo.png';
+import logo from '../image/Logo.png';
 import backgroundImage from '../image/login.png';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import { useUser } from '../components/UserContext';
-import { Header, TopDownDiv } from './CommonStyling';
+import { Title, TopDownDiv, TopLinkTitle, TClogo } from './CommonStyling';
 import styled from 'styled-components';
 
 const Login = () => {
@@ -68,14 +68,14 @@ const Login = () => {
 			backgroundImage: `url(${backgroundImage})`,
 			justifyContent: 'center',
 		}}>
-			<div className="header">
-				<Link to="/" className="header-link">
-					<img src={logo} alt="The Collectors Logo" className="logo" />
-					<span className="header-text">The Collectors</span>
-				</Link>
-			</div>
+			<LoginHeader>
+				<HeaderLink to="/">
+					<TClogoL />
+					<TopLinkTitle>THE COLLECTORS</TopLinkTitle>
+				</HeaderLink>
+			</LoginHeader>
 			<TopDownDiv>
-				<LoginHeader> SIGN<br/>IN </LoginHeader>
+				<LoginTitle> SIGN<br/>IN </LoginTitle>
 				<div className="login-container">
 					{/* Display error message */}
 					{error && <div className="error-message">{error}</div>}
@@ -124,7 +124,7 @@ export default Login;
 
 // >>styles are written here<<
 
-const LoginHeader = styled(Header)`
+const LoginTitle = styled(Title)`
 	font-family: 'wordclock';
 	line-height: 0.8;
 `;
@@ -133,4 +133,23 @@ const Label = styled.label`
 	font-family: 'kodeR';
 	display: block;
 	margin-bottom: 0.5em;
+`;
+
+const LoginHeader = styled.div`
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	display: flex;
+	flex-direction: row;
+`;
+
+const HeaderLink = styled(Link)`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-decoration: none;
+`;
+
+const TClogoL = styled(TClogo)`
+	margin-right: 15px;
 `
