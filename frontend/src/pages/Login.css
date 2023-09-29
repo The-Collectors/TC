@@ -16,21 +16,10 @@ body {
   text-align: center;
 }
 
-/* Style the heading */
-h1 {
-  margin-bottom: 1.5em;
-}
-
 /* Style the input group */
 .input-group {
   margin-bottom: 1.5em;
   text-align: left;
-}
-
-/* Style the label */
-label {
-  display: block;
-  margin-bottom: 0.5em;
 }
 
 /* Style the input field */

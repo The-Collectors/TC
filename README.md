@@ -43,3 +43,14 @@ Directions for launching the project once the necessary packages have been insta
 2. To start the frontend, navigate to the frontend folder in the terminal (new prompt should be opened for frontend) and type `npm start`.
     - It will open new Windows Internet Explorer (or Google Chrome), with http://localhost:3000.
 3. To see the list of clubs in the database, start MongoDB and connect to the localhost database (default - should be saved). You will see *The Collectors* database on the left hand side.
+
+
+## Helpful Links and Tips
+
+### Frontend Styling
+0. Before start, we will use styled-components for overall styling. Therefore, no *.css file will be exist, instead, all styling will included within the corresponding *.js file.
+	- Common (many-used) style will be stored in CommonStyling.js file.
+1. https://styled-components.com/
+    - For clear visual of styled-components, install vscode-styled-componets from vscode Extentions (Available on the left).
+    - Overriding styles only works for (top -> bottom) order.
+
