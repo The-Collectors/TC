@@ -7,70 +7,70 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../components/AuthContext';
 
 function ProfileEdit() {
-  const [user, setUser] = useState({});
-  const [major, setMajor] = useState('');
-  const [graduateYear, setGraduateYear] = useState('');
-  const [discord, setDiscord] = useState('');
-  const [rcsid, setRcsid] = useState('');
-  const [description, setDescription] = useState('');
-  const navigate = useNavigate();
+	const [user, setUser] = useState({});
+	const [major, setMajor] = useState('');
+	const [graduateYear, setGraduateYear] = useState('');
+	const [discord, setDiscord] = useState('');
+	const [rcsid, setRcsid] = useState('');
+	const [description, setDescription] = useState('');
+	const navigate = useNavigate();
 
-  const { authData } = useAuth();
-  const email = authData.data.user;
+	const { authData } = useAuth();
+	const email = authData.data.user;
 
-  useEffect(() => {
-    async function fetchUserProfile() {
-      const response = await axios.get(`http://localhost:8000/api/profile/${email}`);
-      setRcsid(response.data.rcsid);
-      setUser(response.data);
-      setMajor(response.data.major);
-      setGraduateYear(response.data.graduate_year);
-      setDiscord(response.data.discord);
-      setDescription(response.data.description);
-    }
-    fetchUserProfile();
-  }, [email]);
+	useEffect(() => {
+		async function fetchUserProfile() {
+			const response = await axios.get(`http://localhost:8000/api/profile/${email}`);
+			setRcsid(response.data.rcsid);
+			setUser(response.data);
+			setMajor(response.data.major);
+			setGraduateYear(response.data.graduate_year);
+			setDiscord(response.data.discord);
+			setDescription(response.data.description);
+		}
+		fetchUserProfile();
+	}, [email]);
 
-  async function handleSubmit() {
-    await axios.put(`http://localhost:8000/api/profile/${email}/?major=${major}&graduate_year=${graduateYear}&discord=${discord}&description=${description}`).then((res) => console.log(res.data));
-    alert("Profile updated!");
-    navigate('/profile');
-  };
+	async function handleSubmit() {
+		await axios.put(`http://localhost:8000/api/profile/${email}/?major=${major}&graduate_year=${graduateYear}&discord=${discord}&description=${description}`).then((res) => console.log(res.data));
+		alert("Profile updated!");
+		navigate('/profile');
+	};
 
 
-  return (
-    <ProfileContainer style={{ backgroundImage: `url(${Bgimg})` }}>
-      <ProfileCard className="App">
-        <ProfileHeader>Profile</ProfileHeader>
-        <UserInfo>
-          <p>RCSID: {rcsid}</p>
-          <p>Email: {email}</p>
-        </UserInfo>
-        <ProfileForm>
-          <FormField>
-            <label>Major:&nbsp;</label>
-            <input type='text' onChange={(e) => setMajor(e.target.value)} placeholder={major} />
-          </FormField>
-          <FormField>
-            <label>Graduate Year:&nbsp;</label>
-            <input type='text' onChange={(e) => setGraduateYear(e.target.value)} placeholder={graduateYear} />
-          </FormField>
-          <FormField>
-            <label>Discord:&nbsp;</label>
-            <input type='text' onChange={(e) => setDiscord(e.target.value)} placeholder={discord}/>
-          </FormField>
-          <FormField>
-            <label>Description:&nbsp;</label>
-            <input type='text' onChange={(e) => setDescription(e.target.value)} placeholder={description}/>
-          </FormField>
-        </ProfileForm>
-        <ButtonContainer>
-          <UpdateLink onClick={handleSubmit}>Save</UpdateLink>
-          <HomeLink to="/">Home</HomeLink>
-        </ButtonContainer>
-      </ProfileCard>
-    </ProfileContainer>
-  );
+	return (
+		<ProfileContainer style={{ backgroundImage: `url(${Bgimg})` }}>
+			<ProfileCard className="App">
+				<ProfileHeader>Profile</ProfileHeader>
+				<UserInfo>
+					<p>RCSID: {rcsid}</p>
+					<p>Email: {email}</p>
+				</UserInfo>
+				<ProfileForm>
+					<FormField>
+						<label>Major:&nbsp;</label>
+						<input type='text' onChange={(e) => setMajor(e.target.value)} placeholder={major} />
+					</FormField>
+					<FormField>
+						<label>Graduate Year:&nbsp;</label>
+						<input type='text' onChange={(e) => setGraduateYear(e.target.value)} placeholder={graduateYear} />
+					</FormField>
+					<FormField>
+						<label>Discord:&nbsp;</label>
+						<input type='text' onChange={(e) => setDiscord(e.target.value)} placeholder={discord} />
+					</FormField>
+					<FormField>
+						<label>Description:&nbsp;</label>
+						<input type='text' onChange={(e) => setDescription(e.target.value)} placeholder={description} />
+					</FormField>
+				</ProfileForm>
+				<ButtonContainer>
+					<UpdateLink onClick={handleSubmit}>Save</UpdateLink>
+					<HomeLink to="/">Home</HomeLink>
+				</ButtonContainer>
+			</ProfileCard>
+		</ProfileContainer>
+	);
 }
 
 export default ProfileEdit;
