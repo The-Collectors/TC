@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link, useLocation } from "react-router-dom";
 import '../App.css';
 import styled from 'styled-components';
-import logo from '../image/Logo.png';
 import { AuthContext, useAuth } from '../components/AuthContext';
 import { TClogo } from '../pages/CommonStyling';
 
 function Navbar() {
-	let location = useLocation(); {/* getting the current location */ }
+	let location = useLocation(); /* getting the current location */
 	const { authData, setAuthData } = useAuth();
 
 	const handleLogout = () => {
@@ -19,7 +18,7 @@ function Navbar() {
 	}
 
 	if (location.pathname !== "/Login" || location.pathname !== "/Register") {
-		{/* In login page, the navbar will disappear */ }
+		/* In login page, the navbar will disappear */
 		return (
 			<Nav>
 				<NavMenu>

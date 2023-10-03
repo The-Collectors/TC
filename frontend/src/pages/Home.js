@@ -2,21 +2,19 @@ import '../App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GreekLifeView from '../components/GreekLifeView';
 import SearchBar from '../components/SearchBar';
 import ClubCard from '../components/ClubCard';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { BgDiv } from './CommonStyling';
 
-function refreshPage() {
-	window.location.reload();
-}
+//function refreshPage() {
+//	window.location.reload();
+//} << not used, but when needed, just un-comment it.
 
 function Home() {
 
-	const [clubList, setClubList] = useState([])
-	const [greekLifeList, setgreekLifeList] = useState([])
+	const [List, setList] = useState([])
 	const [keyword, setKeyword] = useState('')
 	const [filtered, setFiltered] = useState([])
 	const navigate = useNavigate();
@@ -52,22 +50,22 @@ function Home() {
 				const sortedData = res.data.sort((a, b) => {
 					return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 				});
-				setClubList(sortedData);
+				setList(sortedData);
 			})
-	}, [refreshPage]);
+	}, []);
 
 	// When keyword is inputted at Searchbar
 	useEffect(() => {
 		if (keyword === null || keyword === '') {
-			setFiltered(clubList)
+			setFiltered(List)
 		} else { /**Filters data by input, for tags, add '#' infront of each tags so users can find only tags by '#' */
-			const filteredData = clubList.filter((club) =>
+			const filteredData = List.filter((club) =>
 				`${club.name.toLowerCase()} ${club.description.toLowerCase()} ${club.tags.map((text) => (
 					`#${text.toLowerCase()}`
 				))}`.includes(keyword.toLowerCase()))
 			setFiltered(filteredData)
 		}
-	}, [keyword, updateKey]);
+	}, [List, keyword]);
 
 
 	return (
@@ -121,7 +119,6 @@ function Home() {
             }
             `}
 						</style>
-						<GreekLifeView key={greekLifeList} greekLifeList={greekLifeList} />
 					</div>
 				</div>
 			</div>
