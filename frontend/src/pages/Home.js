@@ -77,10 +77,8 @@ function Home() {
 				paddingTop: "100px",
 				justifyContent: 'center',
 			}}>
-				<h1 className="max-width: 20rem;" style={{
-					height: '3vh',
-				}}>HELLO AND WELCOME!</h1>
-				<h6>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</h6>
+				<Welcome> HELLO AND WELCOME </Welcome>
+				<Subscript>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</Subscript>
 				<div style={{
 					paddingTop: '1.5vh',
 					justifyContent: 'center',
@@ -135,3 +133,18 @@ export default Home;
 
 // >>styles are written here<<
 
+const Welcome = styled.h1`
+	font-family: 'wordclock';
+	padding: 0px;
+	margin: 5px;
+	color: #9fafff;
+	font-size: 72px;
+`;
+
+const Subscript = styled.h6`
+	font-family: 'wordclock';
+	padding: 0px;
+	margin: 5px;
+	color: #000000;
+	font-size: 24px;
+`;

@@ -47,7 +47,6 @@ function App() {
 					<Route path="/clubpage/:name" element={<ClubPersonal />} />
 					<Route path="/orgspage/:name" element={<OrganizationsPersonal />} />
 				</Routes>
-				<Navbar />
 			</BrowserRouter>
 		</UserProvider>
 	);
