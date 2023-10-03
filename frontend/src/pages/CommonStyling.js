@@ -6,6 +6,7 @@ export const BgDiv = styled.div`
     background-image: url(${Bgimg});
     background-repeat: repeat;
     background-position: center;
+	justify-content: center;
     width: 100vw;
     height: 100vh;
     text-align: center;
@@ -39,4 +40,7 @@ export const TClogo = styled.img.attrs((props) => ({
 	width: 50px;
 	height: 50px;
 `;
+
+
+
 

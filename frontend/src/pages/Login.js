@@ -5,7 +5,7 @@ import backgroundImage from '../image/login.png';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import { useUser } from '../components/UserContext';
-import { Title, TopDownDiv, TopLinkTitle, TClogo } from './CommonStyling';
+import { Title, TopDownDiv, TopLinkTitle, TClogo, BgDiv } from './CommonStyling';
 import styled from 'styled-components';
 
 const Login = () => {
@@ -63,10 +63,7 @@ const Login = () => {
 
 	// Render the login form
 	return (
-		<div className="login-page-wrapper list-group-item justify-content-center align-items-center mx-auto" style={{
-			backgroundImage: `url(${backgroundImage})`,
-			justifyContent: 'center',
-		}}>
+		<LoginBg>
 			<LoginHeader>
 				<HeaderLink to="/">
 					<TClogoL />
@@ -115,7 +112,7 @@ const Login = () => {
 					</Link>
 				</div>
 			</TopDownDiv>
-		</div>
+		</LoginBg>
 	);
 };
 
@@ -151,4 +148,16 @@ const HeaderLink = styled(Link)`
 
 const TClogoL = styled(TClogo)`
 	margin-right: 15px;
+`;
+
+const LoginBg = styled(BgDiv)`
+	background-image: url(${backgroundImage});
+	align-items: center;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
 `
+
+
+
+
