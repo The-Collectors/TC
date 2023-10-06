@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
 import backgroundImage from '../image/login.png';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
@@ -77,7 +76,7 @@ const Login = () => {
 					{error && <div className="error-message">{error}</div>}
 					<form onSubmit={handleSubmit}>
 						{/* Email input field */}
-						<div className="input-group">
+						<InputBox>
 							<Label> E-Mail </Label>
 							{/*<label htmlFor="email">Email</label>*/}
 							<input
@@ -88,12 +87,12 @@ const Login = () => {
 								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
-						</div>
+						</InputBox>
 						{/* Password input field */}
-						<div className="input-group">
+						<InputBox>
 							<Label> Password </Label>
 							{/*<label htmlFor="password">Password</label>*/}
-							<input
+							<Input
 								type="password"
 								id="password"
 								name="password"
@@ -101,8 +100,8 @@ const Login = () => {
 								onChange={(e) => setPassword(e.target.value)}
 								required
 							/>
-						</div>
-						<button type="submit">Log In</button>
+						</InputBox>
+						<LoginButton type="submit">Log In</LoginButton>
 					</form>
 				</LoginContainer>
 				{/* Link to the registration page */}
@@ -214,3 +213,36 @@ const RegisterBox = styled.div`
 		color: #ffffff;
 	}
 `;
+
+const InputBox = styled.div`
+	margin-bottom: 1.5em;
+	text-align: left;
+`;
+
+const Input = styled.input`
+	width: 100%;
+	padding: 10px;
+	font-size: 1em;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	box-sizing: border-box;
+`;
+
+const LoginButton = styled.button`
+	display: inline-block;
+	padding: 10px 50px;
+	font-size: 1em;
+	font-weight: bold;
+	color: #fff;
+	background-color: #007bff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+
+	&:hover{
+		background-color: #0055b0;
+		transition: 0.3s;
+	}
+`;
+
