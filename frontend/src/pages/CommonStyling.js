@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Bgimg from '../image/Main_page.png';
 import MainLogo from '../image/Logo.png';
+import {Link} from 'react-router-dom';
 
 export const BgDiv = styled.div`
     background-image: url(${Bgimg});
@@ -41,6 +42,8 @@ export const TClogo = styled.img.attrs((props) => ({
 	height: 50px;
 `;
 
-
+export const NoUlineLink = styled(Link)`
+	text-decoration: none;
+`;
 
 

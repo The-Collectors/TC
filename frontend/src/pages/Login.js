@@ -5,8 +5,8 @@ import backgroundImage from '../image/login.png';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import { useUser } from '../components/UserContext';
-import { Title, TopDownDiv, TopLinkTitle, TClogo, BgDiv } from './CommonStyling';
-import styled from 'styled-components';
+import { Title, TopDownDiv, TopLinkTitle, TClogo, BgDiv, NoUlineLink } from './CommonStyling';
+import styled, { keyframes } from 'styled-components';
 
 const Login = () => {
 	// Declare state variables for user input
@@ -71,8 +71,8 @@ const Login = () => {
 				</HeaderLink>
 			</LoginHeader>
 			<TopDownDiv>
-				<LoginTitle> SIGN<br/>IN </LoginTitle>
-				<div className="login-container">
+				<LoginTitle> SIGN<br />IN </LoginTitle>
+				<LoginContainer>
 					{/* Display error message */}
 					{error && <div className="error-message">{error}</div>}
 					<form onSubmit={handleSubmit}>
@@ -104,13 +104,11 @@ const Login = () => {
 						</div>
 						<button type="submit">Log In</button>
 					</form>
-					{/* Link to the registration page */}
-					<Link to="/Register">
-						<button className="register-button">
-							Register
-						</button>
-					</Link>
-				</div>
+				</LoginContainer>
+				{/* Link to the registration page */}
+				<NoUlineLink to="/Register">
+					<RegisterBox>Not signed up yet?</RegisterBox>
+				</NoUlineLink>
 			</TopDownDiv>
 		</LoginBg>
 	);
@@ -123,6 +121,12 @@ export default Login;
 const LoginTitle = styled(Title)`
 	font-family: 'wordclock';
 	line-height: 0.8;
+	position: absolute;
+	top: 20vh;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
 `;
 
 const Label = styled.label`
@@ -156,8 +160,57 @@ const LoginBg = styled(BgDiv)`
 	display: flex;
 	width: 100vw;
 	height: 100vh;
-`
+`;
 
+const LoginContainer = styled.div`
+	font-weight: bold;
+  	width: 400px;
+  	margin: 20px auto;
+	margin-bottom: 0px;
+  	padding: 10px;
+  	background-color: #ffffff;
+  	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  	border-radius: 8px;
+  	text-align: center;
+	position: absolute;
+	top: 35vh;
+	left: 0;
+	right: 0;
+`;
 
+const HoverAnimation = keyframes`
+	0%{
+		font-size: 1em;
+		color: #808080;
+	}
+	80%{
+		color: #ffffff;
+		font-size: 1.15em;
+	}
+	100%{
+		font-size: 1.1em;
+	}
+`;
 
+const RegisterBox = styled.div`
+	padding: 0px;
+	margin-top: 15px;
+	font-size: 1em;
+	font-weight: bold;
+	color: #808080;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	position: absolute;
+	top: 65vh;
+	left: 50vw;
+	transform: translate(-50%, 0%);
 
+	&:hover {
+		animation-name: ${HoverAnimation};
+		animation-duration: 150ms;
+		transform: translate(-50%, -5%);
+		font-size: 1.1em;
+		color: #ffffff;
+	}
+`;
