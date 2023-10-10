@@ -20,7 +20,7 @@ function ClubCard({
 			className="card-business"
 			style={{
 				background: "#fff",
-				width: "62vw",
+				width: "65vw",
 				borderRadius: "5px",
 				margin: "5px",
 				boxShadow: shadow !== false ? "#9E9E9E 0px 0px 10px" : "",

@@ -8,9 +8,11 @@ export const BgDiv = styled.div`
     background-repeat: repeat;
     background-position: center;
 	justify-content: center;
+	align-items: center;
     width: 100vw;
     height: 100vh;
     text-align: center;
+	display: flex;
 `;
 
 export const Title = styled.h1`
@@ -34,6 +36,31 @@ export const TopLinkTitle = styled.div`
 	text-align: center;
 `;
 
+export const NoUlineLink = styled(Link)`
+	text-decoration: none;
+`;
+
+export const CenteredInput = styled.input`
+padding: 10px;
+background-color: #ffffffe0;
+border-radius: 25px;
+border: none;
+width: 40vw;
+height: 60px;
+text-align: left;
+
+::placeholder,
+::-webkit-input-placeholder
+{
+	text-align: center;
+}
+`;
+
+
+
+
+
+
 export const TClogo = styled.img.attrs((props) => ({
 	src: MainLogo,
 	alt: "The Collectors Logo"
@@ -41,9 +68,3 @@ export const TClogo = styled.img.attrs((props) => ({
 	width: 50px;
 	height: 50px;
 `;
-
-export const NoUlineLink = styled(Link)`
-	text-decoration: none;
-`;
-
-

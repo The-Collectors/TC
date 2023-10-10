@@ -6,7 +6,7 @@ import SearchBar from '../components/SearchBar';
 import ClubCard from '../components/ClubCard';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { BgDiv } from './CommonStyling';
+import { BgDiv, TopDownDiv } from './CommonStyling';
 
 //function refreshPage() {
 //	window.location.reload();
@@ -70,11 +70,7 @@ function Home() {
 
 	return (
 		<BgDiv>
-			<div className="App list-group-item justify-content-center align-items-center mx-auto" style={{
-				width: "70vw",
-				paddingTop: "100px",
-				justifyContent: 'center',
-			}}>
+			<HomeDiv>
 				<Welcome> HELLO AND WELCOME </Welcome>
 				<Subscript>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</Subscript>
 				<div style={{
@@ -86,15 +82,7 @@ function Home() {
 					<div style={{
 						height: '10px',
 					}} />
-					<div style={{
-						padding: '20px',
-						backgroundColor: '#ffffffa0',
-						borderRadius: '10px',
-						width: '100%',
-						height: '60vh',
-						alignContent: 'top',
-						overflowY: 'auto',
-					}}>
+					<ClubViewer>
 						{filtered.map(it => (
 							<tr
 								key={it.name}
@@ -104,6 +92,7 @@ function Home() {
 								<td>
 									<ul style={{
 										margin: 20,
+										paddingLeft: '0px',
 										listStyle: "none",
 									}}>
 										<ClubCard clubname={it} />
@@ -119,9 +108,9 @@ function Home() {
             }
             `}
 						</style>
-					</div>
+					</ClubViewer>
 				</div>
-			</div>
+			</HomeDiv>
 		</BgDiv>
 	);
 }
@@ -134,6 +123,7 @@ const Welcome = styled.h1`
 	font-family: 'wordclock';
 	padding: 0px;
 	margin: 5px;
+	margin-top: 0px;
 	color: #9fafff;
 	font-size: 72px;
 `;
@@ -144,4 +134,29 @@ const Subscript = styled.h6`
 	margin: 5px;
 	color: #000000;
 	font-size: 24px;
+`;
+
+const HomeDiv = styled(TopDownDiv)`
+	padding-top: 5vh;
+	width: 70vw;
+	justify-content: center;
+	align-items: center;
+`;
+
+const ClubViewer = styled(TopDownDiv)`
+	display: block;
+	justify-content: center;
+	padding: 20px;
+	background-color: #ffffffa0;
+	border-radius: 10px;
+	width: 100%;
+	height: 65vh;
+	align-content: top;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+
+	::-webkit-scrollbar{
+		display: none;
+	}
 `;
