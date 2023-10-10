@@ -73,15 +73,8 @@ function Home() {
 			<HomeDiv>
 				<Welcome> HELLO AND WELCOME </Welcome>
 				<Subscript>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</Subscript>
-				<div style={{
-					paddingTop: '1.5vh',
-					justifyContent: 'center',
-					alignContent: 'center',
-				}}>
+				<ContentContainer>
 					<SearchBar onChange={(e) => updateKey(e)} /> {/** When searchbar's input has changed, call updateKey */}
-					<div style={{
-						height: '10px',
-					}} />
 					<ClubViewer>
 						{filtered.map(it => (
 							<tr
@@ -102,14 +95,14 @@ function Home() {
 						))}
 						<style>
 							{`
-            @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
-            .card-business * {
-              font-family:  'Quicksand',sans-serif;
-            }
-            `}
+								@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+								.card-business * {
+								font-family:  'Quicksand',sans-serif;
+								}
+							`}
 						</style>
 					</ClubViewer>
-				</div>
+				</ContentContainer>
 			</HomeDiv>
 		</BgDiv>
 	);
@@ -145,8 +138,8 @@ const HomeDiv = styled(TopDownDiv)`
 
 const ClubViewer = styled(TopDownDiv)`
 	display: block;
-	justify-content: center;
 	padding: 20px;
+	margin-top: 10px;
 	background-color: #ffffffa0;
 	border-radius: 10px;
 	width: 100%;
@@ -159,4 +152,10 @@ const ClubViewer = styled(TopDownDiv)`
 	::-webkit-scrollbar{
 		display: none;
 	}
+`;
+
+const ContentContainer = styled(TopDownDiv)`
+	padding-top: 1.5vh;
+	justify-content: center;
+	align-items: center;
 `;

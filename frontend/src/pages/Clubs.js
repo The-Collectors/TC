@@ -13,9 +13,9 @@ import logo from '../components/Logo.png';
  * This page will show the list of clubs by table, and support various ways of sorting, filtering.
  */
 
-function refreshPage() {
-	window.location.reload();
-}
+//function refreshPage() {
+//	window.location.reload();
+//}
 
 
 function Clubs() {
@@ -83,41 +83,17 @@ function Clubs() {
 				}
 				const sortedData = filteredData.sort((a, b) => {
 					if (sortMethod === 'nameAsc') {
-						if (sortOrder === 'asc') {
-							return a.name.localeCompare(b.name);
-						} else {
-							return b.name.localeCompare(a.name);
-						}
+						return a.name.localeCompare(b.name);
 					} else if (sortMethod === 'nameDesc') {
-						if (sortOrder === 'asc') {
-							return b.name.localeCompare(a.name);
-						} else {
-							return a.name.localeCompare(b.name);
-						}
+						return b.name.localeCompare(a.name);
 					} else if (sortMethod === 'sizeAsc') {
-						if (sortOrder === 'asc') {
-							return a.size - b.size || a.name.localeCompare(b.name);
-						} else {
-							return b.size - a.size || b.name.localeCompare(a.name);
-						}
+						return a.size - b.size;
 					} else if (sortMethod === 'sizeDesc') {
-						if (sortOrder === 'asc') {
-							return b.size - a.size || a.name.localeCompare(b.name);
-						} else {
-							return a.size - b.size || b.name.localeCompare(a.name);
-						}
+						return b.size - a.size;
 					} else if (sortMethod === 'Active') {
-						if (sortOrder === 'asc') {
-							return 1 || a.name.localeCompare(b.name);
-						} else {
-							return -1 || b.name.localeCompare(a.name);
-						}
+						return b.status - a.status;
 					} else if (sortMethod === 'Inactive') {
-						if (sortOrder === 'asc') {
-							return -1 || a.name.localeCompare(b.name);
-						} else {
-							return 1 || b.name.localeCompare(a.name);
-						}
+						return a.status - b.status;
 					} else {
 						return a.name.localeCompare(b.name);
 					}
@@ -133,27 +109,7 @@ function Clubs() {
 				setClubList(sortedData);
 			})
 			.catch(error => console.log(error));
-	}, [sortOrder, sortMethod, selectedTag, filteredData, refreshPage]);
-
-	// When sorting method has changed
-	const handleSortMethodChange = (e) => {
-		setSortMethod(e.target.value);
-	}
-
-	// When sorting order (ascending or descending) has changed
-	const handleSortOrderChange = (e) => {
-		setSortOrder(e.target.value);
-	}
-
-	// When tag filter has changed
-	const handleTagFilter = (tag) => {
-		setSelectedTag(tag);
-	}
-
-	// When tag is set as 'default' or 'none'
-	const clearTagFilter = () => {
-		setSelectedTag('');
-	}
+	}, [sortOrder, sortMethod, selectedTag, filteredData]);
 
 	return (
 		<div
@@ -218,12 +174,6 @@ function Clubs() {
 										}
 									>
 										Name
-										{sortMethod === "nameAsc" && sortOrder === "asc" && (
-											<i className="fas fa-caret-up ml-2"></i>
-										)}
-										{sortMethod === "nameAsc" && sortOrder === "desc" && (
-											<i className="fas fa-caret-down ml-2"></i>
-										)}
 									</button>
 								</th>
 								<th>
@@ -235,12 +185,6 @@ function Clubs() {
 										}
 									>
 										Members_num
-										{sortMethod === "sizeAsc" && sortOrder === "asc" && (
-											<i className="fas fa-caret-up ml-2"></i>
-										)}
-										{sortMethod === "sizeAsc" && sortOrder === "desc" && (
-											<i className="fas fa-caret-down ml-2"></i>
-										)}
 									</button>
 								</th>
 								<th>Description</th>
@@ -254,12 +198,6 @@ function Clubs() {
 										}
 									>
 										Active
-										{sortMethod === "Active" && sortOrder === "asc" && (
-											<i className="fas fa-caret-up ml-2"></i>
-										)}
-										{sortMethod === "Active" && sortOrder === "desc" && (
-											<i className="fas fa-caret-down ml-2"></i>
-										)}
 									</button>
 								</th>
 							</tr>
