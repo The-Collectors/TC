@@ -7,6 +7,7 @@ Team Lead - UHY#8394 (Discord)
 
 ## How to set up the development environment
 Directions to install necessary packages and dependencies for the project. First clone the repository on your machine.
+    - note: we highly recommend you to use Github Desktop with VScode.
 
 ### Installing Python
 1. Download and install latest Python at https://www.python.org/downloads/
@@ -39,6 +40,17 @@ Directions to install necessary packages and dependencies for the project. First
 Directions for launching the project once the necessary packages have been installed.
 1. To start the backend, navigate to the backend folder in the terminal and start a virtual environment with `pipenv shell`. Then type `uvicorn main:app --reload`.
     - note: type `/docs` to the end of the URL to see the FastAPI backend commands.
-2. To start the frontend, navigate to the frontend folder in the terminal and type `npm start`.
+2. To start the frontend, navigate to the frontend folder in the terminal (new prompt should be opened for frontend) and type `npm start`.
     - It will open new Windows Internet Explorer (or Google Chrome), with http://localhost:3000.
 3. To see the list of clubs in the database, start MongoDB and connect to the localhost database (default - should be saved). You will see *The Collectors* database on the left hand side.
+
+
+## Helpful Links and Tips
+
+### Frontend Styling
+0. Before start, we will use styled-components for overall styling. Therefore, no *.css file will be exist, instead, all styling will included within the corresponding *.js file.
+	- Common (many-used) style will be stored in CommonStyling.js file.
+1. https://styled-components.com/
+    - For clear visual of styled-components, install vscode-styled-componets from vscode Extentions (Available on the left).
+    - Overriding styles only works for (top -> bottom) order.
+
