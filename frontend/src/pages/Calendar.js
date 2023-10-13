@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import DayBlock from '../components/DayBlock';
 
 function Calendar() {
 	const [date, setDate] = useState(new Date());
+	const [trigger, setTrigger] = useState(Boolean);
 
 	const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	const monthsOfYear = [
@@ -19,9 +21,10 @@ function Calendar() {
 		'December'
 	];
 
+	const today = new Date();
 	const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
 	const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-	const currentDay = date.getDate();
+	const currentDay = today.getDay();
 
 	const days = [];
 	for (let i = 1; i <= daysInMonth; i++) {
@@ -29,11 +32,11 @@ function Calendar() {
 	}
 
 	const prevMonth = () => {
-		setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
+		setDate(new Date(date.getFullYear(), date.getMonth() - 1, 0));
 	};
 
 	const nextMonth = () => {
-		setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
+		setDate(new Date(date.getFullYear(), date.getMonth() + 1, 0));
 	};
 
 	return (
@@ -58,13 +61,17 @@ function Calendar() {
 								<tr key={row}>
 									{[...Array(7).keys()].map(col => {
 										const day = row * 7 + col - firstDayOfMonth + 1;
-										if (day > 0 && day <= daysInMonth) {
+										const numDate = 0;
+										if (trigger && day !== currentDay){
+											setTrigger(false);
+											return <td key={col}></td>;
+										} else if (day > 0 && day <= daysInMonth) {
 											return (
-												<td
-													key={day}
-													className={day === currentDay ? 'bg-primary text-white' : ''}
-												>
-													{day}
+												<td style={{
+													margine: '0px',
+													padding: '0px',
+												}}>
+													<DayBlock CurrentDate={numDate}/>
 												</td>
 											);
 										} else {
@@ -92,3 +99,7 @@ function Calendar() {
 }
 
 export default Calendar;
+
+/*
+
+							*/

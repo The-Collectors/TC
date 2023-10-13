@@ -85,7 +85,7 @@ function Home() {
 								<td>
 									<ul style={{
 										margin: 20,
-										paddingLeft: '0px',
+										padding: '0px',
 										listStyle: "none",
 									}}>
 										<ClubCard clubname={it} />
