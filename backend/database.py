@@ -13,6 +13,7 @@ clubs_collection = database.Clubs
 orgs_collection = database.Organizations
 events_collection = database.Events
 users_collection = database.Users
+gallery_collection = database.Gallery
 
 async def fetch_one_club(name, find_org = False):
     """Return the specified club or organization in the database."""
@@ -59,6 +60,19 @@ async def fetch_all_events():
     async for document in cursor:
         events.append(Event(**document))
     return events
+
+async def fetch_all_galleryimages_by_club(clubName):
+    """Return the specified set of images in the database."""
+    cursor = gallery_collection.find({"clubName": clubName})
+    images = []
+    async for document in cursor:
+        images.append(Event(**document))
+    return images
+
+async def create_galleryimage(image):
+    """Add a specified image to the gallery database."""
+    await gallery_collection.insert_one(image)
+    return image
 
 async def create_club(club, create_org = False):
     """Add a specified club or organization to the database."""
