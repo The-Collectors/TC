@@ -33,6 +33,7 @@ Directions to install necessary packages and dependencies for the project. First
 ### Installing Packages and Dependencies
 1. Download and install latest Node.js at https://nodejs.org/en. This will also download npm which we need. Check *automatically install necessary tools* when prompted. Restart your computer.
 2. Open up a new terminal and `cd` to the frontend folder. Type `npm install`. This should install all necessary frontend packages.
+![img](https://github.com/The-Collectors/TC/assets/67136819/568332d9-aac9-4f04-8c50-c7c12f780419)
 3. Open up a new terminal and `cd` to the backend folder. Type `pip install pipenv` in ther terminal. If you are getting an error that the command pip does not exists, it means you haven't added Python Scripts to your PATH.
 4. Once pipenv is installed, type `pipenv shell` and then `pip install -r requirements.txt`. This installs all backend packages we need.
 
