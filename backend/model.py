@@ -36,7 +36,8 @@ class LoginInput(BaseModel):
   email: str
   password: str
 
-class GalleryImage(BaseModel):
+class Gallery(BaseModel):
   """Hold the gallery images and their associated club"""
   image: str
-  club: str
+  name: str
+  description: str

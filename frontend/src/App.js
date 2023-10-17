@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Search_Events from "./pages/Search_Events";
 import Manage_Events from "./pages/Manage_Events";
+import Manage_Gallery from './pages/Manage_Gallery';
 import Calendar from "./pages/Calendar";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
@@ -39,6 +40,7 @@ function App() {
 					<Route path="/Events" element={<Events />} />
 					<Route path="/Search_Events" element={<Search_Events />} />
 					<Route path="/Manage_Events" element={<Manage_Events />} />
+					<Route path="/Manage_Gallery" element={<Manage_Gallery />} />
 					<Route path="/Calendar" element={<Calendar />} />
 					<Route path="/Login" element={<Login />} />
 					<Route path="/Register" element={<Register />} />
