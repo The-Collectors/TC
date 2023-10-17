@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import '../App.css';
 import styled from 'styled-components';
 import { AuthContext, useAuth } from '../components/AuthContext';
-import { TClogo } from '../pages/CommonStyling';
+import { TClogo } from './CommonStyling';
 
 function Navbar() {
 	let location = useLocation(); /* getting the current location */

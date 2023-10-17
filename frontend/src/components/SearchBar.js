@@ -1,7 +1,7 @@
 //Search Bar is a tool for creating right design that holds input text for searching.
 
 //import styled from 'styled-components'
-import { CenteredInput } from '../pages/CommonStyling';
+import { CenteredInput } from './CommonStyling';
 
 const SearchBar = ({keyword, onChange}) => {
     return (

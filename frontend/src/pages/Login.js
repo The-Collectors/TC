@@ -4,7 +4,7 @@ import backgroundImage from '../image/login.png';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import { useUser } from '../components/UserContext';
-import { Title, TopDownDiv, TopLinkTitle, TClogo, BgDiv, NoUlineLink } from './CommonStyling';
+import { Title, TopDownDiv, TopLinkTitle, TClogo, BgDiv, NoUlineLink } from '../components/CommonStyling';
 import styled, { keyframes } from 'styled-components';
 
 const Login = () => {

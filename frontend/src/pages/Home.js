@@ -6,7 +6,7 @@ import SearchBar from '../components/SearchBar';
 import ClubCard from '../components/ClubCard';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { BgDiv, TopDownDiv } from './CommonStyling';
+import { BgDiv, TopDownDiv } from '../components/CommonStyling';
 
 //function refreshPage() {
 //	window.location.reload();
@@ -158,4 +158,5 @@ const ContentContainer = styled(TopDownDiv)`
 	padding-top: 1.5vh;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 `;
