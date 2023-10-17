@@ -45,39 +45,43 @@ function Calendar() {
 		<Container>
 			<CalendarDiv>
 				<TitleB>{monthsOfYear[date.getMonth()]} {date.getFullYear()}</TitleB>
-				<div className="col-md-12">
-					<table className="table table-bordered">
-						<thead>
-							<tr>
-								{daysOfWeek.map(day => <th key={day}>{day}</th>)}
+				<CalendarTable>
+					<thead>
+						<tr>
+							{daysOfWeek.map(day => <th key={day}>{day}</th>)}
+						</tr>
+					</thead>
+					<tbody>
+						{[...Array(Math.ceil((firstDayOfMonth + daysInMonth) / 7)).keys()].map(row => (
+							<tr key={row}>
+								{[...Array(7).keys()].map(col => {
+									const day = row * 7 + col - firstDayOfMonth + 1;
+									if (trigger && day !== currentDay) {
+										setTrigger(false);
+										return <td style={{
+											margin: '0px',
+											padding: '0px'
+										}}key={col}></td>;
+									} else if (day > 0 && day <= daysInMonth) {
+										return (
+											<td style={{
+												margin: '0px',
+												padding: '0px',
+											}}>
+												<DayBlock CurrentDate={day} />
+											</td>
+										);
+									} else {
+										return <td style={{
+											margin: '0px',
+											padding: '0px'
+										}}key={col}></td>;
+									}
+								})}
 							</tr>
-						</thead>
-						<tbody>
-							{[...Array(Math.ceil((firstDayOfMonth + daysInMonth) / 7)).keys()].map(row => (
-								<tr key={row}>
-									{[...Array(7).keys()].map(col => {
-										const day = row * 7 + col - firstDayOfMonth + 1;
-										if (trigger && day !== currentDay) {
-											setTrigger(false);
-											return <td key={col}></td>;
-										} else if (day > 0 && day <= daysInMonth) {
-											return (
-												<td style={{
-													margine: '0px',
-													padding: '0px',
-												}}>
-													<DayBlock CurrentDate={day} />
-												</td>
-											);
-										} else {
-											return <td key={col}></td>;
-										}
-									})}
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
+						))}
+					</tbody>
+				</CalendarTable>
 				<div className="col-md-12">
 					<button className="btn btn-primary mr-2" onClick={prevMonth}>
 						Previous Month
@@ -103,6 +107,8 @@ const CalendarDiv = styled(TopDownDiv)`
 	height: 80vh;
 	background-color: #ffffffa0;
 	margin-top: 50px;
+	align-items: center;
+	justify-content: space-around;
 `;
 
 const TitleB = styled.h1`
@@ -110,6 +116,25 @@ const TitleB = styled.h1`
 	font-size: 80px;
 	font-family: 'Boulevard';
 	height: 100px;
+	margin-bottom: 0px;
+`;
+
+const CalendarTable = styled.table`
+	width: 70vw;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+
+	td, th{
+		border: 1px solid;
+		border-color: #cccccc;
+		background-color: #ffffff;
+		width: 10vw;
+	}
+
+	td{
+		height: 7vh;
+	}
 `;
 
 
