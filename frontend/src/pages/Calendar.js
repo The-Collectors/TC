@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import DayBlock from '../components/DayBlock';
+import { BgDiv, TopDownDiv } from '../components/CommonStyling';
+import styled from 'styled-components';
 
 function Calendar() {
 	const [date, setDate] = useState(new Date());
@@ -32,23 +34,17 @@ function Calendar() {
 	}
 
 	const prevMonth = () => {
-		setDate(new Date(date.getFullYear(), date.getMonth() - 1, 0));
+		setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
 	};
 
 	const nextMonth = () => {
-		setDate(new Date(date.getFullYear(), date.getMonth() + 1, 0));
+		setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
 	};
 
 	return (
-		<div className="container" style={{
-			marginTop: '90px',
-		}}>
-			<div className="row">
-				<div className="col-md-12">
-					<h1>{monthsOfYear[date.getMonth()]} {date.getFullYear()}</h1>
-				</div>
-			</div>
-			<div className="row">
+		<Container>
+			<CalendarDiv>
+				<TitleB>{monthsOfYear[date.getMonth()]} {date.getFullYear()}</TitleB>
 				<div className="col-md-12">
 					<table className="table table-bordered">
 						<thead>
@@ -61,8 +57,7 @@ function Calendar() {
 								<tr key={row}>
 									{[...Array(7).keys()].map(col => {
 										const day = row * 7 + col - firstDayOfMonth + 1;
-										const numDate = 0;
-										if (trigger && day !== currentDay){
+										if (trigger && day !== currentDay) {
 											setTrigger(false);
 											return <td key={col}></td>;
 										} else if (day > 0 && day <= daysInMonth) {
@@ -71,7 +66,7 @@ function Calendar() {
 													margine: '0px',
 													padding: '0px',
 												}}>
-													<DayBlock CurrentDate={numDate}/>
+													<DayBlock CurrentDate={day} />
 												</td>
 											);
 										} else {
@@ -83,8 +78,6 @@ function Calendar() {
 						</tbody>
 					</table>
 				</div>
-			</div>
-			<div className="row">
 				<div className="col-md-12">
 					<button className="btn btn-primary mr-2" onClick={prevMonth}>
 						Previous Month
@@ -93,12 +86,32 @@ function Calendar() {
 						Next Month
 					</button>
 				</div>
-			</div>
-		</div>
+			</CalendarDiv>
+		</Container>
 	);
 }
 
 export default Calendar;
+
+const Container = styled(BgDiv)`
+	justify-content: space-evenly;
+	flex-direction: column;
+`;
+
+const CalendarDiv = styled(TopDownDiv)`
+	width: 85vw;
+	height: 80vh;
+	background-color: #ffffffa0;
+	margin-top: 50px;
+`;
+
+const TitleB = styled.h1`
+	color: black;
+	font-size: 80px;
+	font-family: 'Boulevard';
+	height: 100px;
+`;
+
 
 /*
 

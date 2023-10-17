@@ -56,11 +56,6 @@ text-align: left;
 }
 `;
 
-
-
-
-
-
 export const TClogo = styled.img.attrs((props) => ({
 	src: MainLogo,
 	alt: "The Collectors Logo"

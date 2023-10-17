@@ -2,7 +2,8 @@ import React from 'react';
 import { Link, useLocation } from "react-router-dom";
 import '../App.css';
 import styled from 'styled-components';
-import { AuthContext, useAuth } from '../components/AuthContext';
+import { useAuth } from '../components/AuthContext';
+//AuthContext is also in ^^^^^, but import it when used.
 import { TClogo } from './CommonStyling';
 
 function Navbar() {
