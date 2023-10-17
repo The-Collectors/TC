@@ -1,4 +1,5 @@
 
+import React, { useState } from 'react';
 import styled from "styled-components";
 
 /**
@@ -9,13 +10,14 @@ import styled from "styled-components";
  * ex) 1st, 2nd, 3rd...
  */
 
+
 function DayBlock({
 	CurrentDay = 0,
 	CurrentDate = 0,
 	
 }) {
 	return (
-		<Box> {CurrentDate === 0 ? '' : CurrentDate} </Box>
+		<Box day={CurrentDay}> {CurrentDate === 0 ? '' : CurrentDate} </Box>
 	)
 }
 
@@ -33,10 +35,10 @@ const Box = styled.div`
 	align-items: center;
 	justify-content: center;
 	background-color: #ffffff;
-	color: #000000;
+	color: ${props => props.day === 1 ? 'red' : props.day === 0 ? 'blue' : 'black'};
 
 	&:hover{
 		background-color: #9f9fff;
-		color: #ffffff;
+		color: ${props => props.day === 1 ? 'red' : props.day === 0 ? 'blue' : 'white'};
 	}
 `;

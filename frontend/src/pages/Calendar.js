@@ -58,38 +58,29 @@ function Calendar() {
 									const day = row * 7 + col - firstDayOfMonth + 1;
 									if (trigger && day !== currentDay) {
 										setTrigger(false);
-										return <td style={{
-											margin: '0px',
-											padding: '0px'
-										}}key={col}></td>;
+										return <td></td>;
 									} else if (day > 0 && day <= daysInMonth) {
 										return (
-											<td style={{
-												margin: '0px',
-												padding: '0px',
-											}}>
-												<DayBlock CurrentDate={day} />
+											<td>
+												<DayBlock CurrentDate={day} CurrentDay={(day + firstDayOfMonth) % 7}/>
 											</td>
 										);
 									} else {
-										return <td style={{
-											margin: '0px',
-											padding: '0px'
-										}}key={col}></td>;
+										return <td></td>;
 									}
 								})}
 							</tr>
 						))}
 					</tbody>
 				</CalendarTable>
-				<div className="col-md-12">
+				<ButtonHolder>
 					<button className="btn btn-primary mr-2" onClick={prevMonth}>
 						Previous Month
 					</button>
 					<button className="btn btn-primary" onClick={nextMonth}>
 						Next Month
 					</button>
-				</div>
+				</ButtonHolder>
 			</CalendarDiv>
 		</Container>
 	);
@@ -108,7 +99,7 @@ const CalendarDiv = styled(TopDownDiv)`
 	background-color: #ffffffa0;
 	margin-top: 50px;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: normal;
 `;
 
 const TitleB = styled.h1`
@@ -116,27 +107,35 @@ const TitleB = styled.h1`
 	font-size: 80px;
 	font-family: 'Boulevard';
 	height: 100px;
-	margin-bottom: 0px;
+	margin: 0px;
+	margin-top: 5vh;
 `;
 
 const CalendarTable = styled.table`
-	width: 70vw;
 	text-align: center;
-	padding: 0px;
-	margin: 0px;
+	margin: 25px;
 
 	td, th{
 		border: 1px solid;
 		border-color: #cccccc;
 		background-color: #ffffff;
-		width: 10vw;
+		width: 11vw;
 	}
 
 	td{
-		height: 7vh;
+		height: 6vh;
+		margin: 0px;
+		padding: 0px;
 	}
 `;
 
+const ButtonHolder = styled.div`
+	display: flex;
+	position: absolute;
+	bottom: 10vh;
+	width: 25vw;
+	justify-content: space-evenly;
+`;
 
 /*
 
