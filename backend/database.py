@@ -61,6 +61,14 @@ async def fetch_all_events():
         events.append(Event(**document))
     return events
 
+async def fetch_all_gallery():
+    """Return a list of events in the database."""
+    cursor = gallery_collection.find({})
+    gallery = []
+    async for document in cursor:
+        events.append(Gallery(**document))
+    return gallery
+
 async def fetch_all_galleryimages_by_club(clubName):
     """Return the specified set of images in the database."""
     cursor = gallery_collection.find({"clubName": clubName})

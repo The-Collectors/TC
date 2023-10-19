@@ -50,6 +50,12 @@ async def get_events():
     response = await fetch_all_events()
     return response
 
+@app.get("/api/gallery")
+async def get_gallery():
+    """Return a list of events."""
+    response = await fetch_all_gallery()
+    return response
+
 # GET one club/organization/event
 @app.get("/api/clubs/{name}", response_model = Club)
 async def get_club_by_name(name):
@@ -82,6 +88,14 @@ async def get_galleryimages_by_name(clubName):
     if response:
         return response
     raise HTTPException(404, f"There is no club with the name {clubName}")
+
+@app.post("/api/gallery", response_model = Gallery)
+async def post_gallery(club: Gallery):
+    """Create a gallery entry."""
+    response = await create_galleryimage(club.dict())
+    if response:
+        return response
+    raise HTTPException(400, "Something went wrong when creating an image")
 
 # POST a club/organization/event
 @app.post("/api/clubs", response_model = Club)

@@ -8,6 +8,7 @@ import Manage_Clubs from "./pages/Manage_Clubs";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Search_Events from "./pages/Search_Events";
+import Gallery from './pages/Gallery';
 import Manage_Events from "./pages/Manage_Events";
 import Manage_Gallery from './pages/Manage_Gallery';
 import Calendar from "./pages/Calendar";
@@ -40,6 +41,7 @@ function App() {
 					<Route path="/Events" element={<Events />} />
 					<Route path="/Search_Events" element={<Search_Events />} />
 					<Route path="/Manage_Events" element={<Manage_Events />} />
+					<Route path="/Gallery" element={<Gallery />} />
 					<Route path="/Manage_Gallery" element={<Manage_Gallery />} />
 					<Route path="/Calendar" element={<Calendar />} />
 					<Route path="/Login" element={<Login />} />
