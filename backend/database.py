@@ -22,14 +22,6 @@ async def fetch_one_club(name, find_org = False):
         document = await clubs_collection.find_one({"name": name})
     return document
 
-async def fetch_all_events_with_clubName(clubName):
-    """Return the specified event in the database."""
-    cursor = events_collection.find({"clubName": clubName})
-    events = []
-    async for document in cursor:
-        events.append(Event(**document))
-    return events
-
 async def fetch_all_clubs(find_orgs = False):
     """Return a list of all clubs OR organizations in the database."""
     if find_orgs:
@@ -52,14 +44,6 @@ async def fetch_all_clubsorgs():
         clubs.append(Club(**document))
     return clubs
 
-async def fetch_all_events():
-    """Return a list of events in the database."""
-    cursor = events_collection.find({})
-    events = []
-    async for document in cursor:
-        events.append(Event(**document))
-    return events
-
 async def create_club(club, create_org = False):
     """Add a specified club or organization to the database."""
     if create_org:
@@ -67,11 +51,6 @@ async def create_club(club, create_org = False):
     else:
         await clubs_collection.insert_one(club)
     return club
-
-async def create_event(event):
-    """Add a specified event to the database."""
-    await events_collection.insert_one(event)
-    return event
 
 async def update_club(name, desc, size, status, email, image, update_org = False):
     """Update a specified club in the database."""
@@ -100,9 +79,7 @@ async def remove_club(name, remove_org = False):
     else:
         return await clubs_collection.delete_one({"name": name})
 
-async def remove_event(name):
-    """Remove the specified event from the database."""
-    return await events_collection.delete_one({"name": name})
+#tags (clubs cont.)
 
 async def add_tag(name, tag, org_tag = False):
     """Add specified tags to the club or organization."""
@@ -123,6 +100,43 @@ async def remove_tag(name, tag, org_tag = False):
         await clubs_collection.update_one({"name": name}, {"$pull": {"tags": tag}})
         document = await clubs_collection.find_one({"name": name})
     return document
+
+#events
+
+async def create_event(event):
+    """Add a specified event to the database."""
+    await events_collection.insert_one(event)
+    return event
+
+async def fetch_all_events():
+    """Return a list of events in the database."""
+    cursor = events_collection.find({})
+    events = []
+    async for document in cursor:
+        events.append(Event(**document))
+    return events
+
+async def fetch_all_events_with_clubName(clubName):
+    """Return the specified event in the database."""
+    cursor = events_collection.find({"clubName": clubName})
+    events = []
+    async for document in cursor:
+        events.append(Event(**document))
+    return events
+
+async def fetch_events_by_date(date):
+    """Return the specified event by the date."""
+    cursor = events_collection.find({"date": date})
+    events = []
+    async for document in cursor:
+        events.append(Event(**document))
+    return events
+
+async def remove_event(name):
+    """Remove the specified event from the database."""
+    return await events_collection.delete_one({"name": name})
+
+#user/authorization
 
 async def create_user(user):
     # Asynchronously insert a new user document into a MongoDB collection.

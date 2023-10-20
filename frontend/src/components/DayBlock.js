@@ -14,9 +14,13 @@ import styled from "styled-components";
 function DayBlock({
 	CurrentDay = 0,
 	CurrentDate = 0,
+	realDate = new Date(),
 	
-}) {
+}){
+	const today = new Date(realDate.getYear(),realDate.getMonth(),CurrentDate);
+
 	return (
+
 		<Box day={CurrentDay}> {CurrentDate === 0 ? '' : CurrentDate} </Box>
 	)
 }

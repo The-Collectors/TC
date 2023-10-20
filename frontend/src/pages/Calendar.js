@@ -62,7 +62,7 @@ function Calendar() {
 									} else if (day > 0 && day <= daysInMonth) {
 										return (
 											<td>
-												<DayBlock CurrentDate={day} CurrentDay={(day + firstDayOfMonth) % 7}/>
+												<DayBlock CurrentDate={day} CurrentDay={(day + firstDayOfMonth) % 7} realDate={date}/>
 											</td>
 										);
 									} else {
@@ -89,15 +89,19 @@ function Calendar() {
 export default Calendar;
 
 const Container = styled(BgDiv)`
-	justify-content: space-evenly;
 	flex-direction: column;
+	justify-content: unset;
 `;
 
 const CalendarDiv = styled(TopDownDiv)`
 	width: 85vw;
-	height: 80vh;
+	height: 88vh;
+	position: absolute;
+	bottom: 2vh;
+	border-radius: 5px;
 	background-color: #ffffffa0;
-	margin-top: 50px;
+	margin: 0px;
+	margin-top: 90px;
 	align-items: center;
 	justify-content: normal;
 `;
@@ -132,7 +136,7 @@ const CalendarTable = styled.table`
 const ButtonHolder = styled.div`
 	display: flex;
 	position: absolute;
-	bottom: 10vh;
+	bottom: 2vh;
 	width: 25vw;
 	justify-content: space-evenly;
 `;
