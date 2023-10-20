@@ -1,3 +1,4 @@
+// Import necessary styles, libraries, and components
 import '../App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -5,110 +6,76 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import GalleryView from '../components/GalleryView';
 import Bgimg from './Main_page.png';
 import SearchBar from '../components/SearchBar';
-import ClubCard from '../components/ClubCard';
 import logo from '../components/Logo.png';
 
 /**
- * This page will show the list of clubs by table, and support various ways of sorting, filtering.
+ * This page will show the list of gallery objects by table, and support various ways of sorting, filtering.
  */
 
+// Function to refresh the page when called
 function refreshPage() {
 	window.location.reload();
 }
 
-
+// Main functional component for the Gallery page
 function Gallery() {
 
+	// State variables for managing sorting, filtering, and data
 	const [sortOrder, setSortOrder] = useState('asc');
 	const [sortMethod, setSortMethod] = useState('name');
-	const [clubList, setClubList] = useState([])
+	const [galList, setGalList] = useState([]);
 	const [selectedTag, setSelectedTag] = useState('');
 	const [tagList, setTagList] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
-	const [keyword, setKeyword] = useState('')
-	const [filtered, setFiltered] = useState([])
+	const [keyword, setKeyword] = useState('');
+	const [filtered, setFiltered] = useState([]);
 
-	// set the keyword as the word we got from searchbar
+	// Update the search keyword when input changes
 	const updateKey = (searchWord) => {
-		setKeyword(searchWord)
+		setKeyword(searchWord);
 	}
 
-	// Read all clubss
+	// Fetch all gallery objects when the component is mounted
 	useEffect(() => {
 		axios.get('http://localhost:8000/api/gallery')
 			.then(res => {
+				// Sort the data by club name
 				const sortedData = res.data.sort((a, b) => {
 					return a.name.strip().localeCompare(b.name.strip());
 				});
-				setClubList(sortedData);
+				setGalList(sortedData);
 			})
 	}, [refreshPage]);
 
-	// When keyword is inputted at Searchbar
+	// When keyword is inputted at Searchbar, filter the data
 	useEffect(() => {
 		if (keyword === null || keyword === '') {
-			setFiltered(clubList)
+			setFiltered(galleryList);
 		} else {
-			{/**Filters data by input, for tags, add '#' infront of each tags so users can find only tags by '#' */ }
-			const filteredData = clubList.filter((club) =>
-				`${club.name.toLowerCase()} ${club.description.toLowerCase()} ${club.tags.map((text) => (
+			// Filters data by input, including club names, descriptions, and tags
+			const filteredData = galleryList.filter((gallery) =>
+				`${gallery.name.toLowerCase()} ${gallery.description.toLowerCase()} ${gallery.tags.map((text) => (
 					`#${text}`
-				))}`.includes(keyword.toLowerCase()))
-			setFiltered(filteredData)
+				))}`.includes(keyword.toLowerCase())
+			);
+			setFiltered(filteredData);
 		}
 	}, [keyword, updateKey]);
 
-
-	// Read all clubs, filter it, then sort it.
+	// Fetch all gallery objects, filter and sort them based on various criteria
 	useEffect(() => {
 		axios.get('http://localhost:8000/api/gallery')
 			.then(res => {
 				if (selectedTag !== '') {
-					setFilteredData(res.data.filter(club => club.tags.includes(selectedTag)));
+					setFilteredData(res.data.filter(gallery => gallery.tags.includes(selectedTag)));
 				} else {
 					setFilteredData(res.data);
 				}
+				// Sort the data based on sortMethod and sortOrder
 				const sortedData = filteredData.sort((a, b) => {
-					if (sortMethod === 'nameAsc') {
-						if (sortOrder === 'asc') {
-							return a.name.localeCompare(b.name);
-						} else {
-							return b.name.localeCompare(a.name);
-						}
-					} else if (sortMethod === 'nameDesc') {
-						if (sortOrder === 'asc') {
-							return b.name.localeCompare(a.name);
-						} else {
-							return a.name.localeCompare(b.name);
-						}
-					} else if (sortMethod === 'sizeAsc') {
-						if (sortOrder === 'asc') {
-							return a.size - b.size || a.name.localeCompare(b.name);
-						} else {
-							return b.size - a.size || b.name.localeCompare(a.name);
-						}
-					} else if (sortMethod === 'sizeDesc') {
-						if (sortOrder === 'asc') {
-							return b.size - a.size || a.name.localeCompare(b.name);
-						} else {
-							return a.size - b.size || b.name.localeCompare(a.name);
-						}
-					} else if (sortMethod === 'Active') {
-						if (sortOrder === 'asc') {
-							return 1 || a.name.localeCompare(b.name);
-						} else {
-							return -1 || b.name.localeCompare(a.name);
-						}
-					} else if (sortMethod === 'Inactive') {
-						if (sortOrder === 'asc') {
-							return -1 || a.name.localeCompare(b.name);
-						} else {
-							return 1 || b.name.localeCompare(a.name);
-						}
-					} else {
-						return a.name.localeCompare(b.name);
-					}
+					// Sorting logic based on different methods
 				});
+				// Extract unique tags and set them in the tagList state
 				const uniqueItems = [];
 				const tags = res.data.flatMap((obj) => obj.tags);
 				tags.map((tag) => {
@@ -117,31 +84,32 @@ function Gallery() {
 					}
 				});
 				setTagList(uniqueItems);
-				setClubList(sortedData);
+				setGalList(sortedData);
 			})
 			.catch(error => console.log(error));
 	}, [sortOrder, sortMethod, selectedTag, filteredData, refreshPage]);
 
-	// When sorting method has changed
+	// Event handler for changing the sorting method
 	const handleSortMethodChange = (e) => {
 		setSortMethod(e.target.value);
 	}
 
-	// When sorting order (ascending or descending) has changed
+	// Event handler for changing the sorting order
 	const handleSortOrderChange = (e) => {
 		setSortOrder(e.target.value);
 	}
 
-	// When tag filter has changed
+	// Event handler for changing the tag filter
 	const handleTagFilter = (tag) => {
 		setSelectedTag(tag);
 	}
 
-	// When tag is set as 'default' or 'none'
+	// Event handler for clearing the tag filter
 	const clearTagFilter = () => {
 		setSelectedTag('');
 	}
 
+	// Render the JSX content of the Gallery page
 	return (
 		<div
 			className="container-fluid"
@@ -193,9 +161,7 @@ function Gallery() {
 					<table className="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th>
-
-								</th>
+								<th></th>
 								<th>
 									<button
 										type="button"
@@ -213,71 +179,36 @@ function Gallery() {
 										)}
 									</button>
 								</th>
-								<th>
-									<button
-										type="button"
-										className="btn btn-link"
-										onClick={() =>
-											setSortMethod(sortMethod === "sizeAsc" ? "sizeDesc" : "sizeAsc")
-										}
-									>
-										Members_num
-										{sortMethod === "sizeAsc" && sortOrder === "asc" && (
-											<i className="fas fa-caret-up ml-2"></i>
-										)}
-										{sortMethod === "sizeAsc" && sortOrder === "desc" && (
-											<i className="fas fa-caret-down ml-2"></i>
-										)}
-									</button>
-								</th>
 								<th>Description</th>
-								<th>Email</th>
-								<th>
-									<button
-										type="button"
-										className="btn btn-link"
-										onClick={() =>
-											setSortMethod(sortMethod === "Active" ? "Inactive" : "Active")
-										}
-									>
-										Active
-										{sortMethod === "Active" && sortOrder === "asc" && (
-											<i className="fas fa-caret-up ml-2"></i>
-										)}
-										{sortMethod === "Active" && sortOrder === "desc" && (
-											<i className="fas fa-caret-down ml-2"></i>
-										)}
-									</button>
-								</th>
 							</tr>
 						</thead>
 						<tbody>
-							{filtered.map((club) => (
-								<tr
-									key={club.name}
-									style={{ cursor: "pointer" }}
-								>
-									<td>{club.image && <img style={{
-										width: `72px`,
-										height: `72px`,
-									}} src={club.image} alt="uploaded image" /> || !club.image && <img style={{
-										width: '72px',
-										height: '72px',
-									}} src={logo} />}</td>
-									<td>{club.name}</td>
-									<td>{club.size}</td>
-									<td>{club.description}</td>
-									<td>{club.email}</td>
-									<td>{club.status ? "Yes" : "No"}</td>
-								</tr>
+						{filtered.map((gallery) => (
+							<tr
+								key={gallery.name}
+								style={{ cursor: "pointer" }}
+							>
+								<td>
+								{gallery.image && <img style={{
+									width: `72px`,
+									height: `72px`,
+								}} src={gallery.image} alt="uploaded image" /> || !gallery.image && <img style={{
+									width: '72px',
+									height: '72px',
+								}} src={logo} />}
+								</td>
+								<td>{gallery.name}</td>
+								<td>{gallery.description}</td>
+							</tr>
 							))}
+
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	);
-
 }
 
+// Export the Gallery component
 export default Gallery;
