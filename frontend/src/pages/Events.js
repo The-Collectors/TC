@@ -30,7 +30,7 @@ function Events() {
 
 	// set the keyword as the word we got from searchbar
 	const updateKey = (searchWord) => {
-		setKeyword(searchWord)
+		setKeyword(searchWord);
 	}
 
 	// Read all clubss

@@ -17,18 +17,23 @@ function DayBlock({
 	realDate = new Date(),
 	
 }){
+	const [eventList, setEventList] = useState([])
+
 	const today = new Date(realDate.getYear(),realDate.getMonth(),CurrentDate);
 
 	return (
-
-		<Box day={CurrentDay}> {CurrentDate === 0 ? '' : CurrentDate} </Box>
+		<Box day={CurrentDay}>
+			{CurrentDate === 0 ? '' : CurrentDate}
+			<EventsHolder>
+				
+			</EventsHolder>
+		</Box>
 	)
 }
 
 export default DayBlock;
 
 // >>styles are written here<<
-
 const Box = styled.div`
 	display: flex;
 	border: none;
@@ -36,8 +41,9 @@ const Box = styled.div`
 	padding: 0px;
 	height: 100%;
 	width: 100%;
-	align-items: center;
-	justify-content: center;
+	text-align: left;
+	justify-content: unset;
+	flex-direction: column;
 	background-color: #ffffff;
 	color: ${props => props.day === 1 ? 'red' : props.day === 0 ? 'blue' : 'black'};
 
@@ -45,4 +51,11 @@ const Box = styled.div`
 		background-color: #9f9fff;
 		color: ${props => props.day === 1 ? 'red' : props.day === 0 ? 'blue' : 'white'};
 	}
+`;
+
+const EventsHolder = styled.div`
+	display: flex;
+	justify-content: unset;
+	flex-direction: column;
+	text-align: center;
 `;
