@@ -1,4 +1,5 @@
 import motor.motor_asyncio
+from datetime import datetime, timedelta
 from fastapi import FastAPI
 from model import *
 from fastapi import Depends
@@ -126,7 +127,17 @@ async def fetch_all_events_with_clubName(clubName):
 
 async def fetch_events_by_date(date):
     """Return the specified event by the date."""
-    cursor = events_collection.find({"date": date})
+    iso_date = datetime.fromisoformat(date)
+    print(iso_date)
+    start_date = datetime(iso_date.year, iso_date.month, iso_date.day)
+    end_date = start_date + timedelta(days=1)
+    print(start_date, end_date)
+    cursor = events_collection.find({
+		"date": {
+			"$gte": start_date,
+			"$lt": end_date
+		}
+	})
     events = []
     async for document in cursor:
         events.append(Event(**document))

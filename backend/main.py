@@ -73,15 +73,15 @@ async def get_events_by_name(clubName):
     response = await fetch_all_events_with_clubName(clubName)
     if response:
         return response
-    raise HTTPException(404, f"There is no club with the name {clubName}")
+    raise HTTPException(404, f"There is no events with the club {clubName}")
 
-@app.get("/api/events/{date}")
+@app.get("/api/events/date/{date}")
 async def get_events_by_date(date):
     """Fetch events by date."""
     response = await fetch_events_by_date(date)
     if response:
         return response
-    raise HTTPException(404, f"There are no club on the date {date}")
+    raise HTTPException(404, f"There are no events on the date {date}")
 
 # POST a club/organization/event
 @app.post("/api/clubs", response_model = Club)

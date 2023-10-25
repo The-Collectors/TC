@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from "styled-components";
 
 /**
@@ -19,13 +20,25 @@ function DayBlock({
 }){
 	const [eventList, setEventList] = useState([])
 
-	const today = new Date(realDate.getYear(),realDate.getMonth(),CurrentDate);
+	const today = new Date(realDate.getFullYear(),realDate.getMonth(),CurrentDate).toISOString();
+
+	useEffect(() => {
+		const fetchEvents = async () => {
+			try {
+				const response = await axios.get(`http://localhost:8000/api/events/date/${today}`);
+				setEventList(response.data);
+			} catch (error) {
+			}
+		};
+
+		fetchEvents();
+	}, []);
 
 	return (
 		<Box day={CurrentDay}>
 			{CurrentDate === 0 ? '' : CurrentDate}
 			<EventsHolder>
-				
+				{eventList.length}
 			</EventsHolder>
 		</Box>
 	)
