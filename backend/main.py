@@ -81,7 +81,7 @@ async def get_events_by_date(date):
     response = await fetch_events_by_date(date)
     if response:
         return response
-    raise HTTPException(404, f"There are no events on the date {date}")
+    return []
 
 # POST a club/organization/event
 @app.post("/api/clubs", response_model = Club)

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import DayBlock from '../components/DayBlock';
 import { BgDiv, TopDownDiv } from '../components/CommonStyling';
 import styled from 'styled-components';
@@ -6,6 +7,7 @@ import styled from 'styled-components';
 function Calendar() {
 	const [date, setDate] = useState(new Date());
 	const [trigger, setTrigger] = useState(Boolean);
+	const [eventList, setEventList] = useState([]);
 
 	const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	const monthsOfYear = [
@@ -41,6 +43,15 @@ function Calendar() {
 		setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
 	};
 
+	const HandleClick = (Curdate) => {
+		const ISODate = Curdate.toISOString();
+
+		axios.get(`http://localhost:8000/api/events/date/${ISODate}`)
+			.then(res => {
+				setEventList(res.data)
+			})
+	};
+
 	return (
 		<Container>
 			<CalendarDiv>
@@ -61,7 +72,9 @@ function Calendar() {
 										return <td></td>;
 									} else if (day > 0 && day <= daysInMonth) {
 										return (
-											<td>
+											<td
+												onClick = {() => HandleClick(new Date(date.getFullYear(), date.getMonth(), day))}
+											>
 												<DayBlock CurrentDate={day} CurrentDay={(day + firstDayOfMonth) % 7} realDate={date}/>
 											</td>
 										);
@@ -73,6 +86,9 @@ function Calendar() {
 						))}
 					</tbody>
 				</CalendarTable>
+				<EventInfo>
+					{eventList.length === 0 ? '' : eventList.length}
+				</EventInfo>
 				<ButtonHolder>
 					<button className="btn btn-primary mr-2" onClick={prevMonth}>
 						Previous Month
@@ -127,7 +143,7 @@ const CalendarTable = styled.table`
 	}
 
 	td{
-		height: 6vh;
+		height: 7vh;
 		margin: 0px;
 		padding: 0px;
 	}
@@ -140,6 +156,26 @@ const ButtonHolder = styled.div`
 	width: 25vw;
 	justify-content: space-evenly;
 `;
+
+const EventInfo = styled.div`
+	display: flex;
+	height: 18vh;
+	width: 77vw;
+	margin-top: 10px;
+	background-color: #ffffff;
+	border-radius: 10px;
+	border-color: #9090ff;
+	border-style: solid;
+	border-width: 1px;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+
+	::-webkit-scrollbar{
+		display: none;
+	}
+`
 
 /*
 
