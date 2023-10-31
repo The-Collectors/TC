@@ -32,7 +32,7 @@ function DayBlock({
 		};
 
 		fetchEvents();
-	}, []);
+	}, [today]);
 
 	return (
 		<Box day={CurrentDay}>
