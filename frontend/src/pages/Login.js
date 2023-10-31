@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
-import logo from '../components/Logo.png';
 import backgroundImage from '../image/login.png';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import { useUser } from '../components/UserContext';
-import { Header, TopDownDiv } from './CommonStyling';
-import styled from 'styled-components';
+import { Title, TopDownDiv, TopLinkTitle, TClogo, BgDiv, NoUlineLink } from '../components/CommonStyling';
+import styled, { keyframes } from 'styled-components';
 
 const Login = () => {
 	// Declare state variables for user input
@@ -64,24 +62,21 @@ const Login = () => {
 
 	// Render the login form
 	return (
-		<div className="login-page-wrapper list-group-item justify-content-center align-items-center mx-auto" style={{
-			backgroundImage: `url(${backgroundImage})`,
-			justifyContent: 'center',
-		}}>
-			<div className="header">
-				<Link to="/" className="header-link">
-					<img src={logo} alt="The Collectors Logo" className="logo" />
-					<span className="header-text">The Collectors</span>
-				</Link>
-			</div>
+		<LoginBg>
+			<LoginHeader>
+				<HeaderLink to="/">
+					<TClogoL />
+					<TopLinkTitle>THE COLLECTORS</TopLinkTitle>
+				</HeaderLink>
+			</LoginHeader>
 			<TopDownDiv>
-				<LoginHeader> SIGN<br/>IN </LoginHeader>
-				<div className="login-container">
+				<LoginTitle> SIGN<br />IN </LoginTitle>
+				<LoginContainer>
 					{/* Display error message */}
 					{error && <div className="error-message">{error}</div>}
 					<form onSubmit={handleSubmit}>
 						{/* Email input field */}
-						<div className="input-group">
+						<InputBox>
 							<Label> E-Mail </Label>
 							{/*<label htmlFor="email">Email</label>*/}
 							<input
@@ -92,12 +87,12 @@ const Login = () => {
 								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
-						</div>
+						</InputBox>
 						{/* Password input field */}
-						<div className="input-group">
+						<InputBox>
 							<Label> Password </Label>
 							{/*<label htmlFor="password">Password</label>*/}
-							<input
+							<Input
 								type="password"
 								id="password"
 								name="password"
@@ -105,18 +100,16 @@ const Login = () => {
 								onChange={(e) => setPassword(e.target.value)}
 								required
 							/>
-						</div>
-						<button type="submit">Log In</button>
+						</InputBox>
+						<LoginButton type="submit">Log In</LoginButton>
 					</form>
-					{/* Link to the registration page */}
-					<Link to="/Register">
-						<button className="register-button">
-							Register
-						</button>
-					</Link>
-				</div>
+				</LoginContainer>
+				{/* Link to the registration page */}
+				<NoUlineLink to="/Register">
+					<RegisterBox>Not signed up yet?</RegisterBox>
+				</NoUlineLink>
 			</TopDownDiv>
-		</div>
+		</LoginBg>
 	);
 };
 
@@ -124,13 +117,132 @@ export default Login;
 
 // >>styles are written here<<
 
-const LoginHeader = styled(Header)`
+const LoginTitle = styled(Title)`
 	font-family: 'wordclock';
 	line-height: 0.8;
+	position: absolute;
+	top: 20vh;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
 `;
 
 const Label = styled.label`
 	font-family: 'kodeR';
 	display: block;
 	margin-bottom: 0.5em;
-`
+`;
+
+const LoginHeader = styled.div`
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	display: flex;
+	flex-direction: row;
+`;
+
+const HeaderLink = styled(Link)`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-decoration: none;
+`;
+
+const TClogoL = styled(TClogo)`
+	margin-right: 15px;
+`;
+
+const LoginBg = styled(BgDiv)`
+	background-image: url(${backgroundImage});
+	align-items: center;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+`;
+
+const LoginContainer = styled.div`
+	font-weight: bold;
+  	width: 400px;
+  	margin: 20px auto;
+	margin-bottom: 0px;
+  	padding: 10px;
+  	background-color: #ffffff;
+  	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  	border-radius: 8px;
+  	text-align: center;
+	position: absolute;
+	top: 35vh;
+	left: 0;
+	right: 0;
+`;
+
+const HoverAnimation = keyframes`
+	0%{
+		font-size: 1em;
+		color: #808080;
+	}
+	80%{
+		color: #ffffff;
+		font-size: 1.15em;
+	}
+	100%{
+		font-size: 1.1em;
+	}
+`;
+
+const RegisterBox = styled.div`
+	padding: 0px;
+	margin-top: 15px;
+	font-size: 1em;
+	font-weight: bold;
+	color: #808080;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	position: absolute;
+	top: 65vh;
+	left: 50vw;
+	transform: translate(-50%, 0%);
+
+	&:hover {
+		animation-name: ${HoverAnimation};
+		animation-duration: 150ms;
+		transform: translate(-50%, -5%);
+		font-size: 1.1em;
+		color: #ffffff;
+	}
+`;
+
+const InputBox = styled.div`
+	margin-bottom: 1.5em;
+	text-align: left;
+`;
+
+const Input = styled.input`
+	width: 100%;
+	padding: 10px;
+	font-size: 1em;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	box-sizing: border-box;
+`;
+
+const LoginButton = styled.button`
+	display: inline-block;
+	padding: 10px 50px;
+	font-size: 1em;
+	font-weight: bold;
+	color: #fff;
+	background-color: #007bff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+
+	&:hover{
+		background-color: #0055b0;
+		transition: 0.3s;
+	}
+`;
+

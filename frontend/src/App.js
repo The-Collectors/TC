@@ -1,8 +1,7 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from "./components/Footer";
 import Clubs from "./pages/Clubs";
 import Manage_Clubs from "./pages/Manage_Clubs";
 import Home from "./pages/Home";
@@ -47,7 +46,6 @@ function App() {
 					<Route path="/clubpage/:name" element={<ClubPersonal />} />
 					<Route path="/orgspage/:name" element={<OrganizationsPersonal />} />
 				</Routes>
-				<Navbar />
 			</BrowserRouter>
 		</UserProvider>
 	);

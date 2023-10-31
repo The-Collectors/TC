@@ -19,6 +19,7 @@ class Event(BaseModel):
   name: str
   description: str
   image: Optional[str] = None
+  location: Optional[str] = None
   date: datetime
   
 class User(BaseModel):

@@ -10,7 +10,7 @@ function ClubsItem(props) {
 	const [status, setStatus] = useState(props.Clubs.status)
 	const [email, setEmail] = useState(props.Clubs.email)
 	const [image, setImage] = useState(props.Clubs.image)
-	const [tags, setTags] = useState([]);
+//	const [tags, setTags] = useState([]);
 	const [tag, setTag] = useState('');
 
 	const active = () => {

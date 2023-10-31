@@ -20,7 +20,7 @@ function ClubCard({
 			className="card-business"
 			style={{
 				background: "#fff",
-				width: "62vw",
+				width: "65vw",
 				borderRadius: "5px",
 				margin: "5px",
 				boxShadow: shadow !== false ? "#9E9E9E 0px 0px 10px" : "",
@@ -63,7 +63,7 @@ function ClubCard({
 				width: '87%',
 			}}>
 				<tr>
-					<td rowspan="5" style={{
+					<td rowSpan="5" style={{
 						verticalAlign: 'top',
 						height: '100px',
 					}}>
@@ -86,7 +86,7 @@ function ClubCard({
 						width: '40pt',
 						height: '17pt',
 					}}> {clubname.size} </td>
-					<td rowspan="2" style={{
+					<td rowSpan="2" style={{
 						borderLeft: "1px solid #aaaaaa",
 						paddingLeft: "10px"
 					}}> {clubname.description} </td>
