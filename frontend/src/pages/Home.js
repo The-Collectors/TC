@@ -137,14 +137,16 @@ const HomeDiv = styled(TopDownDiv)`
 `;
 
 const ClubViewer = styled(TopDownDiv)`
-	display: block;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: top;
 	padding: 20px;
 	margin-top: 10px;
 	background-color: #ffffffa0;
 	border-radius: 10px;
 	width: 100%;
 	height: 65vh;
-	align-content: top;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	overflow-y: scroll;
