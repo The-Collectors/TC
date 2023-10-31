@@ -8,6 +8,7 @@ function Calendar() {
 	const [date, setDate] = useState(new Date());
 	const [trigger, setTrigger] = useState(Boolean);
 	const [eventList, setEventList] = useState([]);
+	const [selectedDate, setSelectedDate] = useState(new Date());
 
 	const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	const monthsOfYear = [
@@ -45,6 +46,7 @@ function Calendar() {
 
 	const HandleClick = (Curdate) => {
 		const ISODate = Curdate.toISOString();
+		setSelectedDate(Curdate);
 
 		axios.get(`http://localhost:8000/api/events/date/${ISODate}`)
 			.then(res => {
@@ -87,7 +89,10 @@ function Calendar() {
 					</tbody>
 				</CalendarTable>
 				<EventInfo>
-					{eventList.length === 0 ? '' : eventList.length}
+					At {selectedDate.getFullYear()}/{selectedDate.getMonth()+1}/{selectedDate.getDate()}:<br/>
+					<EventsHolder>
+						{eventList.length === 0 ? 'No events here!' : eventList.length}
+					</EventsHolder>
 				</EventInfo>
 				<ButtonHolder>
 					<button className="btn btn-primary mr-2" onClick={prevMonth}>
@@ -159,9 +164,13 @@ const ButtonHolder = styled.div`
 
 const EventInfo = styled.div`
 	display: flex;
+	flex-direction: column;
 	height: 18vh;
 	width: 77vw;
 	margin-top: 10px;
+	justify-content: unset;
+	align-items: center;
+
 	background-color: #ffffff;
 	border-radius: 10px;
 	border-color: #9090ff;
@@ -175,6 +184,10 @@ const EventInfo = styled.div`
 	::-webkit-scrollbar{
 		display: none;
 	}
+`
+
+const EventsHolder = styled.div`
+	width: 100%;
 `
 
 /*
