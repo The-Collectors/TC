@@ -1,4 +1,6 @@
 
+import logo from './Logo.png'
+
 /**
  * @param eventName The name of the events
  * @param eventDate Date or duaration of the events 
@@ -7,13 +9,15 @@
 
 function EventCard({
 	eventName,
-	eventDate,
+	headerColor = "#fff",
+	headerBg = "#4285F4",
 	shadow = true,
+	headerStyle = {},
+	style = {},
 	...props
 }){
 	return (
 		<div
-			className="card-business"
 			style={{
 				background: "#fff",
 				width: "65vw",
@@ -46,7 +50,7 @@ function EventCard({
 						textAlign: 'left',
 					}}
 				>
-					{clubname.name}
+					{eventName.name}
 				</h1>
 			</div>
 			<table className="table table-striped table-hover" style={{
@@ -63,10 +67,10 @@ function EventCard({
 						verticalAlign: 'top',
 						height: '100px',
 					}}>
-						{clubname.image && <img style={{
+						{eventName.image && <img style={{
 							width: `72px`,
 							height: `72px`,
-						}} src={clubname.image} alt="uploaded image" /> || !clubname.image && <img style={{
+						}} src={eventName.image} alt="uploaded image" /> || !eventName.image && <img style={{
 							width: '72px',
 							height: '72px',
 						}} src={logo} />}
@@ -81,11 +85,11 @@ function EventCard({
 					<td style={{
 						width: '40pt',
 						height: '17pt',
-					}}> {clubname.size} </td>
+					}}> {eventName.size} </td>
 					<td rowSpan="2" style={{
 						borderLeft: "1px solid #aaaaaa",
 						paddingLeft: "10px"
-					}}> {clubname.description} </td>
+					}}> {eventName.description} </td>
 				</tr>
 				<tr style={{
 					paddingBottom: "5px",
@@ -94,7 +98,7 @@ function EventCard({
 						verticalAlign: "top",
 					}}> Activated: </th>
 					<td style={
-						clubname.status ? { verticalAlign: "top", color: 'green' } : { verticalAlign: "top", color: 'red' }
+						eventName.status ? { verticalAlign: "top", color: 'green' } : { verticalAlign: "top", color: 'red' }
 					}> ● </td>
 				</tr>
 				<tr style={{
@@ -105,7 +109,7 @@ function EventCard({
 					<th style={{
 						height: '17pt',
 					}}> Contact: </th>
-					<td colSpan="2"> {clubname.email && clubname.email}</td>
+					<td colSpan="2"> {eventName.email && eventName.email}</td>
 				</tr>
 				<tr style={{
 					borderTop: "1px solid #aaaaaa",
@@ -115,12 +119,12 @@ function EventCard({
 					<th style={{
 						height: '17pt',
 					}}> tags: </th>
-					<td colSpan="2"> {clubname.tags && clubname.tags.length > 0 && (
+					<td colSpan="2"> {eventName.tags && eventName.tags.length > 0 && (
 						<li style={{
 							padding: 0,
 							margin: 0,
 						}}>
-							{clubname.tags.map((text) => (
+							{eventName.tags.map((text) => (
 								<span style={{ marginRight: 5 }}> #{text.toUpperCase()} </span>
 							))}
 						</li>

@@ -3,12 +3,12 @@ import axios from 'axios'
 
 function EventsItem(props) {
 
-  const [isActive, setActive] = useState('false');
-  const [clubName, setClubName] = useState(props.Events.clubName)
+ // const [isActive, setActive] = useState('false');
+  //const [clubName, setClubName] = useState(props.Events.clubName)
   const [name, setName] = useState(props.Events.name)
-  const [desc, setDesc] = useState(props.Events.description)
-  const [date, setDate] = useState(props.Events.date)
-  const [tags, setTags] = useState([]);
+  //const [desc, setDesc] = useState(props.Events.description)
+  //const [date, setDate] = useState(props.Events.date)
+  //const [tags, setTags] = useState([]);
   const [tag, setTag] = useState('');
 
   const handleAddTag = (name) => {

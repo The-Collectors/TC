@@ -3,6 +3,7 @@ import axios from 'axios';
 import DayBlock from '../components/DayBlock';
 import { BgDiv, TopDownDiv } from '../components/CommonStyling';
 import styled from 'styled-components';
+import EventCard from '../components/EventCard';
 
 function Calendar() {
 	const [date, setDate] = useState(new Date());
@@ -91,7 +92,21 @@ function Calendar() {
 				<EventInfo>
 					At {selectedDate.getFullYear()}/{selectedDate.getMonth()+1}/{selectedDate.getDate()}:<br/>
 					<EventsHolder>
-						{eventList.length === 0 ? 'No events here!' : eventList.length}
+						{eventList.length === 0 ? 'No events here!' : eventList.map(it => (
+							<tr
+								key={it.name}
+							>
+								<td>
+									<ul style={{
+										margin: 20,
+										padding: '0px',
+										listStyle: "none",
+									}}>
+										<EventCard eventName={it} />
+									</ul>
+								</td>
+							</tr>
+						))}
 					</EventsHolder>
 				</EventInfo>
 				<ButtonHolder>
