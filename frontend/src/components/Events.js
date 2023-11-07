@@ -41,7 +41,7 @@ function EventsItem(props) {
             <button type="submit">Add</button>
           </form>
         </div>
-        <span style={{ fontweight: 'bold, underline' }}>{props.Events.clubName} : {props.Events.name} : </span> {props.Events.description} : {props.Events.date} : 
+        <span style={{ fontweight: 'bold, underline' }}>{props.Events.clubName} : {props.Events.name} : </span> {props.Events.description} : {props.Events.StartDate} : {props.Events.EndDate} : 
           {props.Events.tags? (
             props.Events.tags.map(tag => (
               <span key={tag}> {tag} <button onClick={() => handleDeleteTag(tag)} className="btn btn-outline-danger my-2 mx-2" style={{'borderRadius':'50px',}}>X Tag</button> :</span>
