@@ -20,7 +20,7 @@ function EventCard({
 		<div
 			style={{
 				background: "#fff",
-				width: "65vw",
+				width: "73vw",
 				borderRadius: "5px",
 				margin: "5px",
 				boxShadow: shadow !== false ? "#9E9E9E 0px 0px 10px" : "",

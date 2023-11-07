@@ -44,7 +44,7 @@ Directions to install necessary packages and dependencies for the project. First
 ## Launching the project
 Directions for launching the project once the necessary packages have been installed.
 1. To start the backend, navigate to the backend folder in the terminal and start a virtual environment with `pipenv shell`. Then type `uvicorn main:app --reload`.
-    - note: type `/docs` to the end of the URL to see the FastAPI backend commands.
+    - note: type `/docs` to the end of the URL (from the line 'Uvicorn running on...') to see the FastAPI backend commands.
 2. To start the frontend, navigate to the frontend folder in the terminal (new prompt should be opened for frontend) and type `npm start`.
     - It will open new Windows Internet Explorer (or Google Chrome), with http://localhost:3000.
 3. To see the list of clubs in the database, start MongoDB and connect to the localhost database (default - should be saved). You will see *The Collectors* database on the left hand side.

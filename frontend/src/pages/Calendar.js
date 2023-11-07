@@ -146,9 +146,9 @@ const TitleB = styled.h1`
 	color: black;
 	font-size: 80px;
 	font-family: 'Boulevard';
-	height: 100px;
+	height: 90px;
 	margin: 0px;
-	margin-top: 5vh;
+	margin-top: 3vh;
 `;
 
 const CalendarTable = styled.table`
@@ -180,9 +180,9 @@ const ButtonHolder = styled.div`
 const EventInfo = styled.div`
 	display: flex;
 	flex-direction: column;
-	height: 18vh;
+	height: 24vh;
 	width: 77vw;
-	margin-top: 10px;
+	margin-top: 5px;
 	justify-content: unset;
 	align-items: center;
 
