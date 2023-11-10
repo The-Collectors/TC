@@ -92,10 +92,13 @@ function Calendar() {
 				<EventInfo>
 					At {selectedDate.getFullYear()}/{selectedDate.getMonth()+1}/{selectedDate.getDate()}:<br/>
 					<EventsHolder>
-						{eventList.length === 0 ? 'No events here!' : [...Array(14)].map(it => (
-							<tr key={it}>
-
-							</tr>
+						{eventList.length === 0 ? 'No events here!' : [...Array(14).keys()].map(col => (
+							<td key={col}>
+								{[...Array(eventList.length).keys()].map(row => {
+									const hour = col + 7;
+									return <th> {hour} </th>;
+								})}
+							</td>
 						))}
 					</EventsHolder>
 				</EventInfo>

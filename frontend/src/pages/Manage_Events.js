@@ -102,7 +102,7 @@ function Manage_Events() {
 
 	// Post a club
 	const addEventsHandler = () => {
-		axios.post('http://localhost:8000/api/events', { 'clubName': clubName, 'name': name, 'description': desc, 'location':location, 'StartDate': moment(StartDate).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"), 'EndDate': moment(EndDate).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"), 'image': image })
+		axios.post('http://localhost:8000/api/events', { 'clubName': clubName, 'name': name, 'description': desc, 'location':location, 'startDate': moment(StartDate).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"), 'endDate': moment(EndDate).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"), 'image': image })
 			.then(res => console.log(res))
 	}
 

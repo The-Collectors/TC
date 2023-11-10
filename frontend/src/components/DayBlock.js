@@ -67,8 +67,6 @@ const Box = styled.div`
 `;
 
 const EventsHolder = styled.div`
-	display: flex;
-	justify-content: unset;
-	flex-direction: column;
 	text-align: center;
+	color: 'black';
 `;

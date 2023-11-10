@@ -20,8 +20,8 @@ class Event(BaseModel):
     description: str
     image: Optional[str] = None
     location: Optional[str] = None
-    StartDate: datetime
-    EndDate: datetime
+    startDate: datetime
+    endDate: datetime
   
 class User(BaseModel):
     """Hold Information about Users."""

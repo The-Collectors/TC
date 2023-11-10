@@ -128,15 +128,12 @@ async def fetch_all_events_with_clubName(clubName):
 async def fetch_events_by_date(date):
     """Return the specified event by the date."""
     iso_date = datetime.fromisoformat(date)
-    print(iso_date)
-    start_date = datetime(iso_date.year, iso_date.month, iso_date.day)
-    end_date = start_date + timedelta(days=1)
+    start_date = datetime(iso_date.year, iso_date.month, iso_date.day, 23, 59, 59)
+    end_date = datetime(iso_date.year, iso_date.month, iso_date.day, 0, 0, 1)
     print(start_date, end_date)
     cursor = events_collection.find({
-		"date": {
-			"$gte": start_date,
-			"$lt": end_date
-		}
+		"startDate": {"$lte": start_date},
+        "endDate": {"$gt": end_date},
 	})
     events = []
     async for document in cursor:
