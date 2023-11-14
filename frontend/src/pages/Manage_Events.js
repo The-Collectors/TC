@@ -11,7 +11,7 @@ function Manage_Events() {
 
 	const [sortOrder, setSortOrder] = useState('asc');
 	const [sortMethod, setSortMethod] = useState('name');
-	const [eventList, setEventList] = useState([])
+	const [eventList, setEventList] = useState([]);
 	const [selectedTag, setSelectedTag] = useState('');
 	const [tagList, setTagList] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);

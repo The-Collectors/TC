@@ -52,6 +52,9 @@ Directions for launching the project once the necessary packages have been insta
 
 ## Helpful Links and Tips
 
+### General Tips
+0. Careful with renaming. Changing name of existing (linked) file will cause a problem.
+
 ### Frontend Styling
 0. Before start, we will use styled-components for overall styling. Therefore, no *.css file will be exist, instead, all styling will included within the corresponding *.js file.
 	- Common (many-used) style will be stored in CommonStyling.js file.
