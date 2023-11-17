@@ -84,7 +84,7 @@ async def get_events_by_name(clubName):
 @app.get("/api/gallery/{clubname}")
 async def get_galleryimages_by_name(clubName):
     """Fetch specified images."""
-    response = await fetch_all_galleryimages_by_club(clubName)
+    response = await fetch_all_gallery_with_clubName(clubName)
     if response:
         return response
     raise HTTPException(404, f"There is no club with the name {clubName}")

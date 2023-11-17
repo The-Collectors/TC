@@ -9,12 +9,12 @@ import moment from "moment-timezone";
 
 function Manage_Gallery() {
 	const [sortOrder, setSortOrder] = useState('asc');
-	const [sortMethod, setSortMethod] = useState('name');
+	const [sortMethod, setSortMethod] = useState('clubName');
 	const [galleryList, setGalleryList] = useState([]); // Update to galleryList
 	const [selectedTag, setSelectedTag] = useState('');
 	const [tagList, setTagList] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
-	const [name, setName] = useState(''); // Update to match gallery object structure
+	const [clubName, setName] = useState(''); // Update to match gallery object structure
 	const [description, setDescription] = useState(''); // Update to match gallery object structure
 	const [image, setImage] = useState(null);
 
@@ -61,7 +61,7 @@ function Manage_Gallery() {
 
 	// Post a gallery
 	const addGalleryHandler = () => {
-		axios.post('http://localhost:8000/api/gallery', { 'image': image, 'name': name, 'description': description })
+		axios.post('http://localhost:8000/api/gallery', { 'image': image, 'clubName': clubName, 'description': description })
 		.then(res => {
 		  console.log(res); // Log the response to the console
 		})
