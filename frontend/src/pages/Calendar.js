@@ -93,7 +93,7 @@ function Calendar() {
 				<EventInfo>
 					At {selectedDate.getFullYear()}/{selectedDate.getMonth()+1}/{selectedDate.getDate()}:<br/>
 					<EventsHolder>
-						{eventList.length === 0 ? 'No events here!' : <EventSchedule list={eventList} />}
+						{eventList.length === 0 ? 'No events here!' : <EventSchedule list={eventList} date={selectedDate} />}
 					</EventsHolder>
 				</EventInfo>
 				<ButtonHolder>
