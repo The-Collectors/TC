@@ -18,8 +18,8 @@ function Manage_Events() {
 	const [name, setName] = useState('')
 	const [clubName, setClubName] = useState('')
 	const [desc, setDesc] = useState('')
-	const [StartDate, setStartDate] = useState('')
-	const [EndDate, setEndDate] = useState('')
+	const [StartDate, setStartDate] = useState(new Date())
+	const [EndDate, setEndDate] = useState(new Date())
 	const [image, setImage] = useState(null)
 	const [location, setLocation] = useState('')
 
@@ -100,9 +100,17 @@ function Manage_Events() {
 		reader.readAsDataURL(file);
 	};
 
-	// Post a club
+	// Post an event
 	const addEventsHandler = () => {
-		axios.post('http://localhost:8000/api/events', { 'clubName': clubName, 'name': name, 'description': desc, 'location':location, 'startDate': moment(StartDate).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"), 'endDate': moment(EndDate).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"), 'image': image })
+		axios.post('http://localhost:8000/api/events', {
+			'clubName': clubName,
+			'name': name,
+			'description': desc,
+			'location': location,
+			'startDate': moment(StartDate).utcOffset(0, true).tz("Europe/London").format("YYYY-MM-DDTHH:mm:ssZ"),
+			'endDate': moment(EndDate).utcOffset(0, true).tz("Europe/London").format("YYYY-MM-DDTHH:mm:ssZ"),
+			'image': image
+		})
 			.then(res => console.log(res))
 	}
 
@@ -117,9 +125,8 @@ function Manage_Events() {
 						<input type="text" className="mb-2 form-control nameIn" onChange={event => setClubName(event.target.value)} placeholder='Club Name' />
 						<input type="text" className="mb-2 form-control desIn" onChange={event => setDesc(event.target.value)} placeholder='Description' />
 						<input type="text" className="mb-2 form-control locIn" onChange={event => setLocation(event.target.value)} placeholder='Location' />
-						<DatePicker selected={StartDate} onChange={(date) => setStartDate(date)} showTimeSelect dateFormat="yyyy/MM/dd HH:mm:ss" placeholder='StratTime' />
-						
-						<DatePicker selected={EndDate} onChange={(date) => setEndDate(date)} showTimeSelect dateFormat="yyyy/MM/dd HH:mm:ss" placeholder='EndTime' />
+						<DatePicker selected={StartDate} onChange={(date) => setStartDate(date)} showTimeSelect dateFormat="yyyy/MM/dd HH:mm" placeholder='StratTime' />
+						<DatePicker selected={EndDate} onChange={(date) => setEndDate(date)} showTimeSelect dateFormat="yyyy/MM/dd HH:mm" placeholder='EndTime' />
 						<input type="file" accept="image/*" onChange={handleImageChange} />
 						<button className="btn btn-outline-primary mx-2 mb-3" style={{ 'borderRadius': '50px', "font-weight": "bold" }}>Add Event</button>
 					</span>

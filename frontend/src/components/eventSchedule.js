@@ -12,7 +12,7 @@ import { TopDownDiv } from './CommonStyling';
 function EventSchedule({
 	list,
 	date,
-}){
+}) {
 	return (
 		<TopDownDiv>
 			<TimeTable>
@@ -32,7 +32,7 @@ function EventSchedule({
 						console.log(StartDate, EndDate, today)
 
 						return (
-							<tr> {StartDate <= today && EndDate >= today ? 'yes' : 'no'} </tr>
+							<tr validity={StartDate <= today && EndDate >= today}> </tr>
 						)
 					})}</td>
 				})}
@@ -55,10 +55,19 @@ const TimeTable = styled.table`
 		border-color: #cccccc;
 		background-color: #ffffff;
 		width: 5vw;
+		height: 25px;
 	}
 
 	td{
 		margin: 0px;
 		padding: 0px;
+	}
+
+	tr{
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+		height: 25px;
+		background-color: ${props => props.validity === true ? 'green' : 'red'};
 	}
 `;
