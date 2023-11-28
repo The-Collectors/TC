@@ -38,7 +38,7 @@ function DayBlock({
 		<Box day={CurrentDay}>
 			{CurrentDate === 0 ? '' : CurrentDate}
 			<EventsHolder>
-				{eventList.length === 0 ? '' : `${eventList.length} events here!`}
+				{eventList.length === 0 ? '' : (eventList.length)}
 			</EventsHolder>
 		</Box>
 	)
