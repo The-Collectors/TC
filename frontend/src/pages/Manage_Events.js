@@ -23,9 +23,9 @@ function Manage_Events() {
 	const [image, setImage] = useState(null)
 	const [location, setLocation] = useState('')
 
-	function refreshPage() {
-		window.location.reload();
-	}
+	// function refreshPage() {
+	// 	window.location.reload();
+	// }
 
 	// Read all clubs
 	useEffect(() => {
@@ -73,6 +73,8 @@ function Manage_Events() {
 						} else {
 							return 1 || b.name.localeCompare(a.name);
 						}
+					} else {
+						return a.name.localeCompare(b.name);
 					}
 				});
 				const uniqueItems = [];
@@ -86,7 +88,7 @@ function Manage_Events() {
 				setEventList(sortedData);
 			})
 			.catch(error => console.log(error));
-	}, [sortOrder, sortMethod, selectedTag, filteredData, refreshPage]);
+	}, [sortOrder, sortMethod, selectedTag, filteredData]);
 
 	const handleImageChange = (event) => {
 		const file = event.target.files[0];

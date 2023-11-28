@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from "styled-components";
 import { TopDownDiv } from './CommonStyling';
 
@@ -31,11 +31,11 @@ function EventSchedule({
 
 						const daycheckS = StartDate.getDate() < today.getDate()
 						const daycheckE = EndDate.getDate() > today.getDate()
-						const timecheckS = StartDate.getDate() == today.getDate() && StartDate.getTime() <= today.getTime()
-						const timecheckE = EndDate.getDate() == today.getDate() && EndDate.getTime() > today.getTime()
+						const timecheckS = StartDate.getDate() === today.getDate() && StartDate.getTime() <= today.getTime()
+						const timecheckE = EndDate.getDate() === today.getDate() && EndDate.getTime() > today.getTime()
 
 						return (
-							<Box validity={daycheckS && timecheckE || daycheckS && daycheckE || daycheckE && timecheckS || timecheckS && timecheckE}></Box>
+							<Box validity={(daycheckS && timecheckE) || (daycheckS && daycheckE) || (daycheckE && timecheckS) || (timecheckS && timecheckE)}></Box>
 						)
 					})}</td>
 				})}

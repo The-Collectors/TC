@@ -3,7 +3,6 @@ import axios from 'axios';
 import DayBlock from '../components/DayBlock';
 import { BgDiv, TopDownDiv } from '../components/CommonStyling';
 import styled from 'styled-components';
-import EventCard from '../components/EventCard';
 import EventSchedule from '../components/EventSchedule';
 
 function Calendar() {
