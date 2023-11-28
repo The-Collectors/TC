@@ -29,10 +29,13 @@ function EventSchedule({
 						const StartDate = new Date(block.startDate)
 						const EndDate = new Date(block.endDate)
 
-						console.log(StartDate, EndDate, today)
+						const daycheckS = StartDate.getDate() < today.getDate()
+						const daycheckE = EndDate.getDate() > today.getDate()
+						const timecheckS = StartDate.getDate() == today.getDate() && StartDate.getTime() <= today.getTime()
+						const timecheckE = EndDate.getDate() == today.getDate() && EndDate.getTime() > today.getTime()
 
 						return (
-							<tr validity={StartDate <= today && EndDate >= today}> </tr>
+							<Box validity={daycheckS && timecheckE || daycheckS && daycheckE || daycheckE && timecheckS || timecheckS && timecheckE}></Box>
 						)
 					})}</td>
 				})}
@@ -68,6 +71,19 @@ const TimeTable = styled.table`
 		padding: 0px;
 		width: 100%;
 		height: 25px;
-		background-color: ${props => props.validity === true ? 'green' : 'red'};
 	}
+`;
+
+const Box = styled.div`
+	display: flex;
+	border: none;
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	text-align: left;
+	justify-content: unset;
+	flex-direction: column;
+	color: ${props => props.validity === true ? 'green' : 'red'};
+	background-color: ${props => props.validity === true ? 'green' : 'red'};
 `;

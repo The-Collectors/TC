@@ -107,8 +107,8 @@ function Manage_Events() {
 			'name': name,
 			'description': desc,
 			'location': location,
-			'startDate': moment(StartDate).utcOffset(0, true).tz("Europe/London").format("YYYY-MM-DDTHH:mm:ssZ"),
-			'endDate': moment(EndDate).utcOffset(0, true).tz("Europe/London").format("YYYY-MM-DDTHH:mm:ssZ"),
+			'startDate': moment(StartDate).utcOffset(0, true).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"),
+			'endDate': moment(EndDate).utcOffset(0, true).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"),
 			'image': image
 		})
 			.then(res => console.log(res))
