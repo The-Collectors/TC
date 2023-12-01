@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { TopDownDiv } from './CommonStyling';
 
 /**
- * 
+ * @param list an event list given (including time data)
+ * @param date date of selected block (or, wanted date for the schedule)
  * 
  */
 

@@ -5,6 +5,8 @@ import { BgDiv, TopDownDiv } from '../components/CommonStyling';
 import styled from 'styled-components';
 import EventSchedule from '../components/EventSchedule';
 
+// Calendar page is written here.
+
 function Calendar() {
 	const [date, setDate] = useState(new Date());
 	const [trigger, setTrigger] = useState(Boolean);
@@ -29,7 +31,7 @@ function Calendar() {
 
 	const today = new Date();
 	const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-	const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+	const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(); // remember that getMonth is based on 0-11 index, not 1-12.
 	const currentDay = today.getDay();
 
 	const days = [];
@@ -46,6 +48,7 @@ function Calendar() {
 	};
 
 	const HandleClick = (Curdate) => {
+		/** Call the event data (which is clicked) */
 		const ISODate = Curdate.toISOString();
 		setSelectedDate(Curdate);
 
@@ -58,27 +61,34 @@ function Calendar() {
 	return (
 		<Container>
 			<CalendarDiv>
-				<TitleB>{monthsOfYear[date.getMonth()]} {date.getFullYear()}</TitleB>
+				<TitleB> {/*ex) January 2020*/}
+					{monthsOfYear[date.getMonth()]} {date.getFullYear()}
+				</TitleB>
 				<CalendarTable>
 					<thead>
-						<tr>
+						<tr> {/* day (mon, tue...) at the top of the table */}
 							{daysOfWeek.map(day => <th key={day}>{day}</th>)}
 						</tr>
 					</thead>
 					<tbody>
 						{[...Array(Math.ceil((firstDayOfMonth + daysInMonth) / 7)).keys()].map(row => (
+							/* Array of 4 or 5 (columns), depending on starting date and length of the month */
 							<tr key={row}>
 								{[...Array(7).keys()].map(col => {
 									const day = row * 7 + col - firstDayOfMonth + 1;
 									if (trigger && day !== currentDay) {
+										/** if trigger is not pulled yet (saying no date was detected as a first day of month)
+										 * and the day given is not yet equal with the currentDay (currentDay is today's day as default)
+										 */
 										setTrigger(false);
 										return <td></td>;
 									} else if (day > 0 && day <= daysInMonth) {
 										return (
 											<td
-												onClick = {() => HandleClick(new Date(date.getFullYear(), date.getMonth(), day))}
+												onClick={() => HandleClick(new Date(date.getFullYear(), date.getMonth(), day))}
 											>
-												<DayBlock CurrentDate={day} CurrentDay={(day + firstDayOfMonth) % 7} realDate={date}/>
+												<DayBlock CurrentDate={day} CurrentDay={(day + firstDayOfMonth) % 7} realDate={date} />
+												{/* reference 'DayBlock.js' for detailed info */}
 											</td>
 										);
 									} else {
@@ -90,9 +100,10 @@ function Calendar() {
 					</tbody>
 				</CalendarTable>
 				<EventInfo>
-					At {selectedDate.getFullYear()}/{selectedDate.getMonth()+1}/{selectedDate.getDate()}:<br/>
+					At {selectedDate.getFullYear()}/{selectedDate.getMonth() + 1}/{selectedDate.getDate()}:<br />
 					<EventsHolder>
-						{eventList.length === 0 ? 'No events here!' : <EventSchedule list={eventList} date={selectedDate} />}
+						{eventList.length === 0 ? 'No events here!' : <EventSchedule list={eventList} date={selectedDate} />
+						/** Reference EventsHolder for more info */}
 					</EventsHolder>
 				</EventInfo>
 				<ButtonHolder>
