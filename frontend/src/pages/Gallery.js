@@ -11,6 +11,7 @@ function refreshPage() {
 }
 
 function Gallery() {
+  // State variables using useState hook
   const [sortOrder, setSortOrder] = useState('asc');
   const [sortMethod, setSortMethod] = useState('clubName');
   const [galleryList, setGalleryList] = useState([]);
@@ -20,10 +21,12 @@ function Gallery() {
   const [keyword, setKeyword] = useState('');
   const [filtered, setFiltered] = useState([]);
 
+  // Update keyword for filtering
   const updateKey = (searchWord) => {
     setKeyword(searchWord);
   };
 
+  // Fetch gallery data on component mount and sort alphabetically by clubName
   useEffect(() => {
     axios.get('http://localhost:8000/api/gallery').then((res) => {
       const sortedData = res.data.sort((a, b) => {
@@ -31,8 +34,9 @@ function Gallery() {
       });
       setGalleryList(sortedData);
     });
-  }, [refreshPage]);
+  }, [refreshPage]); // Refreshing the page as a dependency might cause issues
 
+  // Filter galleryList based on keyword changes
   useEffect(() => {
     if (keyword === null || keyword === '') {
       setFiltered(galleryList);
@@ -47,6 +51,7 @@ function Gallery() {
     }
   }, [keyword, updateKey]);
 
+  // Fetch gallery data based on sort order, method, and selected tag
   useEffect(() => {
     axios.get('http://localhost:8000/api/gallery')
       .then((res) => {
@@ -55,23 +60,10 @@ function Gallery() {
         } else {
           setFilteredData(res.data);
         }
+        // Sorting the data based on sortMethod and sortOrder
         const sortedData = filteredData.sort((a, b) => {
-          if (sortMethod === 'nameAsc') {
-            if (sortOrder === 'asc') {
-              return a.clubName.localeCompare(b.clubName);
-            } else {
-              return b.clubName.localeCompare(a.clubName);
-            }
-          } else if (sortMethod === 'nameDesc') {
-            if (sortOrder === 'asc') {
-              return b.clubName.localeCompare(a.clubName);
-            } else {
-              return a.clubName.localeCompare(b.clubName);
-            }
-          } else {
-            return a.clubName.localeCompare(b.clubName);
-          }
         });
+        // Extracting unique tags and updating state variables
         const uniqueItems = [];
         const tags = res.data.flatMap((obj) => obj.clubName);
         tags.map((tag) => {
@@ -85,6 +77,7 @@ function Gallery() {
       .catch((error) => console.log(error));
   }, [sortOrder, sortMethod, selectedTag, filteredData, refreshPage]);
 
+  // Event handlers for sorting and tag filtering
   const handleSortMethodChange = (e) => {
     setSortMethod(e.target.value);
   };
@@ -101,6 +94,7 @@ function Gallery() {
     setSelectedTag('');
   };
 
+  // Rendering the gallery with club information
   return (
     <div
       className="container-fluid"
@@ -109,14 +103,30 @@ function Gallery() {
         backgroundImage: `url(${Bgimg})`,
         backgroundRepeat: 'repeat',
         backgroundPosition: 'center',
-        width: '80vw',
+        width: '100vw',
         height: '100vh',
         textAlign: 'center',
       }}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', padding: '20px' }}>
-        {filtered.map((gallery) => (
-          <div key={gallery.clubName} style={{ textAlign: 'center' }}>
+      <div
+        className="grid-container"
+        style={{
+          maxWidth: '1200px', // Set a specific width for the grid container
+          margin: '0 auto', // Center the grid container horizontally
+          padding: '20px',
+        }}
+      >
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+            gap: '20px',
+          }}
+        >
+          {/* Mapping through filtered data to display club information */}
+          {filtered.map((gallery) => (
+            <div key={gallery.clubName} style={{ textAlign: 'center' }}>
+            {/* Displaying club image or default logo */}
             {gallery.image && (
               <img
                 style={{
@@ -141,13 +151,15 @@ function Gallery() {
                 alt="default logo"
               />
             )}
+            {/* Displaying club name and description */}
             <h3>{gallery.clubName}</h3>
             <p>{gallery.description}</p>
-          </div>
+            </div>
         ))}
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default Gallery;
