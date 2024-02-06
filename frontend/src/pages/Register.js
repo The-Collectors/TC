@@ -43,25 +43,6 @@ const Register = () => {
 		// Log user input for debugging
 		console.log('Email:', email, 'Confirm Email:', confirmEmail, 'Password:', password, 'Confirm Password:', confirmPassword, 'RCSID:', rcsid);
 
-		// Encrypt user data (Caesar cipher)
-		const udata = [rcsid, email, password]; // Assuming rcsid, email, password are defined elsewhere
-		const newudata = [];
-		udata.forEach((item) => {
-			let endata = "";
-			for (let j = 0; j < item.length; j++) {
-				let ascii = item.charCodeAt(j);
-				// Caesar cipher shift
-				ascii = ((ascii - 32 + 15) % 95) + 32; // Adjusted for printable ASCII range (32-126)
-				endata += String.fromCharCode(ascii);
-			}
-	  	newudata.push(endata);
-		});
-
-		// Assign the encrypted data back
-		rcsid = newudata[0];
-		email = newudata[1];
-		password = newudata[2];
-
 
 		// Send data to the server
 		try {

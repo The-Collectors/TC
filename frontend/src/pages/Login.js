@@ -46,7 +46,6 @@ const Login = () => {
 			});
 
 		// Assign the encrypted data back
-		rcsid = newudata[0];
 		email = newudata[1];
 		password = newudata[2];
 
@@ -141,7 +140,7 @@ const LoginTitle = styled(Title)`
 	font-family: 'wordclock';
 	line-height: 0.8;
 	position: absolute;
-	top: 20vh;
+	top: 15vh;
 	margin-left: auto;
 	margin-right: auto;
 	left: 0;
@@ -221,7 +220,7 @@ const RegisterBox = styled.div`
 	cursor: pointer;
 	text-decoration: none;
 	position: absolute;
-	top: 65vh;
+	top: 70vh;
 	left: 50vw;
 	transform: translate(-50%, 0%);
 
