@@ -2,21 +2,19 @@ import '../App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GreekLifeView from '../components/GreekLifeView';
 import SearchBar from '../components/SearchBar';
 import ClubCard from '../components/ClubCard';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { BgDiv } from './CommonStyling';
+import { BgDiv, TopDownDiv } from '../components/CommonStyling';
 
-function refreshPage() {
-	window.location.reload();
-}
+//function refreshPage() {
+//	window.location.reload();
+//} << not used, but when needed, just un-comment it.
 
 function Home() {
 
-	const [clubList, setClubList] = useState([])
-	const [greekLifeList, setgreekLifeList] = useState([])
+	const [List, setList] = useState([])
 	const [keyword, setKeyword] = useState('')
 	const [filtered, setFiltered] = useState([])
 	const navigate = useNavigate();
@@ -52,53 +50,32 @@ function Home() {
 				const sortedData = res.data.sort((a, b) => {
 					return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
 				});
-				setClubList(sortedData);
+				setList(sortedData);
 			})
-	}, [refreshPage]);
+	}, []);
 
 	// When keyword is inputted at Searchbar
 	useEffect(() => {
 		if (keyword === null || keyword === '') {
-			setFiltered(clubList)
+			setFiltered(List)
 		} else { /**Filters data by input, for tags, add '#' infront of each tags so users can find only tags by '#' */
-			const filteredData = clubList.filter((club) =>
+			const filteredData = List.filter((club) =>
 				`${club.name.toLowerCase()} ${club.description.toLowerCase()} ${club.tags.map((text) => (
 					`#${text.toLowerCase()}`
 				))}`.includes(keyword.toLowerCase()))
 			setFiltered(filteredData)
 		}
-	}, [keyword, updateKey]);
+	}, [List, keyword]);
 
 
 	return (
 		<BgDiv>
-			<div className="App list-group-item justify-content-center align-items-center mx-auto" style={{
-				width: "70vw",
-				paddingTop: "100px",
-				justifyContent: 'center',
-			}}>
-				<h1 styleName="max-width: 20rem;" style={{
-					height: '3vh',
-				}}>HELLO AND WELCOME!</h1>
-				<h6>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</h6>
-				<div style={{
-					paddingTop: '1.5vh',
-					justifyContent: 'center',
-					alignContent: 'center',
-				}}>
+			<HomeDiv>
+				<Welcome> HELLO AND WELCOME </Welcome>
+				<Subscript>FIND ALL RPI CLUBS AND ORGANIZATIONS HERE</Subscript>
+				<ContentContainer>
 					<SearchBar onChange={(e) => updateKey(e)} /> {/** When searchbar's input has changed, call updateKey */}
-					<div style={{
-						height: '10px',
-					}} />
-					<div style={{
-						padding: '20px',
-						backgroundColor: '#ffffffa0',
-						borderRadius: '10px',
-						width: '100%',
-						height: '60vh',
-						alignContent: 'top',
-						overflowY: 'auto',
-					}}>
+					<ClubViewer>
 						{filtered.map(it => (
 							<tr
 								key={it.name}
@@ -108,6 +85,7 @@ function Home() {
 								<td>
 									<ul style={{
 										margin: 20,
+										padding: '0px',
 										listStyle: "none",
 									}}>
 										<ClubCard clubname={it} />
@@ -117,16 +95,15 @@ function Home() {
 						))}
 						<style>
 							{`
-            @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
-            .card-business * {
-              font-family:  'Quicksand',sans-serif;
-            }
-            `}
+								@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+								.card-business * {
+								font-family:  'Quicksand',sans-serif;
+								}
+							`}
 						</style>
-						<GreekLifeView key={greekLifeList} greekLifeList={greekLifeList} />
-					</div>
-				</div>
-			</div>
+					</ClubViewer>
+				</ContentContainer>
+			</HomeDiv>
 		</BgDiv>
 	);
 }
@@ -135,3 +112,53 @@ export default Home;
 
 // >>styles are written here<<
 
+const Welcome = styled.h1`
+	font-family: 'wordclock';
+	padding: 0px;
+	margin: 5px;
+	margin-top: 0px;
+	color: #9fafff;
+	font-size: 72px;
+`;
+
+const Subscript = styled.h6`
+	font-family: 'wordclock';
+	padding: 0px;
+	margin: 5px;
+	color: #000000;
+	font-size: 24px;
+`;
+
+const HomeDiv = styled(TopDownDiv)`
+	padding-top: 5vh;
+	width: 70vw;
+	justify-content: center;
+	align-items: center;
+`;
+
+const ClubViewer = styled(TopDownDiv)`
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: top;
+	padding: 20px;
+	margin-top: 10px;
+	background-color: #ffffffa0;
+	border-radius: 10px;
+	width: 100%;
+	height: 65vh;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+
+	::-webkit-scrollbar{
+		display: none;
+	}
+`;
+
+const ContentContainer = styled(TopDownDiv)`
+	padding-top: 1.5vh;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+`;

@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link, useLocation } from "react-router-dom";
 import '../App.css';
 import styled from 'styled-components';
-import logo from './Logo.png';
-import { AuthContext, useAuth } from '../components/AuthContext';
+import { useAuth } from '../components/AuthContext';
+//AuthContext is also in ^^^^^, but import it when used.
+import { TClogo } from './CommonStyling';
 
 function Navbar() {
-	let location = useLocation(); {/* getting the current location */ }
+	let location = useLocation(); /* getting the current location */
 	const { authData, setAuthData } = useAuth();
 
 	const handleLogout = () => {
@@ -18,15 +19,12 @@ function Navbar() {
 	}
 
 	if (location.pathname !== "/Login" || location.pathname !== "/Register") {
-		{/* In login page, the navbar will disappear */ }
+		/* In login page, the navbar will disappear */
 		return (
 			<Nav>
 				<NavMenu>
 					<NavLink to="/">
-						<img src={logo} width={50} height={50} />
-					</NavLink>
-					<NavLink to="/">
-						Home
+						<TClogo />
 					</NavLink>
 					<NavDropdown>
 						<NavLink to="/Clubs">
@@ -89,7 +87,8 @@ const NavDropdownMenu = styled.div`
   	position: absolute;
   	z-index: 1;
   	display: none;
-  	min-width: 150px;
+  	min-width: 170px;
+	max-width: 300px;
   	padding: 8px 0;
   	background-color: #000020;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -130,12 +129,13 @@ const NavMenu = styled.div`
 `;
 
 const NavSubLink = styled(Link)`
+	font-family: 'kodeR';
 	color: #f0f0f0;
 	display: flex;
 	align-items: center;
 	text-decoration: none;
 	font-weight: none;
-	padding: 0 1rem;
+	padding: 0 1.5rem;
 	height: 100%;
 	cursor: pointer;
 	&.active {
@@ -144,7 +144,7 @@ const NavSubLink = styled(Link)`
 `;
 
 const NavLink = styled(NavSubLink)`
-  	font-weight: bold;
+	font-family: 'kodeB';
 `;
 
 const NavBtn = styled.nav`

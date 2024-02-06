@@ -33,8 +33,13 @@ Directions to install necessary packages and dependencies for the project. First
 ### Installing Packages and Dependencies
 1. Download and install latest Node.js at https://nodejs.org/en. This will also download npm which we need. Check *automatically install necessary tools* when prompted. Restart your computer.
 2. Open up a new terminal and `cd` to the frontend folder. Type `npm install`. This should install all necessary frontend packages.
+	![img](https://github.com/The-Collectors/TC/assets/67136819/568332d9-aac9-4f04-8c50-c7c12f780419)
 3. Open up a new terminal and `cd` to the backend folder. Type `pip install pipenv` in ther terminal. If you are getting an error that the command pip does not exists, it means you haven't added Python Scripts to your PATH.
+	![pipenv install](https://github.com/The-Collectors/TC/assets/67136819/2773f5e1-6876-4b67-99e6-27d7b0cf55e9)
 4. Once pipenv is installed, type `pipenv shell` and then `pip install -r requirements.txt`. This installs all backend packages we need.
+	![pipenv shell](https://github.com/The-Collectors/TC/assets/67136819/c04e38fe-0b2b-48d8-9527-c1a2895c63c0)
+	![pip install requirements](https://github.com/The-Collectors/TC/assets/67136819/3677c4fd-117c-4404-b570-58756c94790e)
+
 
 ## Launching the project
 Directions for launching the project once the necessary packages have been installed.
@@ -53,4 +58,7 @@ Directions for launching the project once the necessary packages have been insta
 1. https://styled-components.com/
     - For clear visual of styled-components, install vscode-styled-componets from vscode Extentions (Available on the left).
     - Overriding styles only works for (top -> bottom) order.
+2. Fonts are implemented through fonts.js file. Please look through previously implemented code (the @font-face) and implement the other.
+	- Some fonts are not allowed to use, please check the lisence of code carefully.
+	- Some fonts are only applied for caplital letters, please comment it under @font-face when implementing those kinds.
 

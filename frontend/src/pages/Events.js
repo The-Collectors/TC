@@ -2,10 +2,8 @@ import '../App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import EventsView from '../components/EventsView';
 import Bgimg from './Main_page.png';
 import SearchBar from '../components/SearchBar';
-import ClubCard from '../components/ClubCard';
 import logo from '../components/Logo.png';
 
 /**
@@ -30,7 +28,7 @@ function Events() {
 
 	// set the keyword as the word we got from searchbar
 	const updateKey = (searchWord) => {
-		setKeyword(searchWord)
+		setKeyword(searchWord);
 	}
 
 	// Read all clubss
@@ -38,18 +36,18 @@ function Events() {
 		axios.get('http://localhost:8000/api/events')
 			.then(res => {
 				const sortedData = res.data.sort((a, b) => {
-					return a.name.strip().localeCompare(b.name.strip());
+					return a.name.trim().localeCompare(b.name.trim());
 				});
 				setClubList(sortedData);
 			})
-	}, [refreshPage]);
+	}, []);
 
 	// When keyword is inputted at Searchbar
+	/**Filters data by input, for tags, add '#' infront of each tags so users can find only tags by '#' */
 	useEffect(() => {
 		if (keyword === null || keyword === '') {
 			setFiltered(clubList)
 		} else {
-			{/**Filters data by input, for tags, add '#' infront of each tags so users can find only tags by '#' */ }
 			const filteredData = clubList.filter((club) =>
 				`${club.name.toLowerCase()} ${club.description.toLowerCase()} ${club.tags.map((text) => (
 					`#${text}`
@@ -120,7 +118,7 @@ function Events() {
 				setClubList(sortedData);
 			})
 			.catch(error => console.log(error));
-	}, [sortOrder, sortMethod, selectedTag, filteredData, refreshPage]);
+	}, [sortOrder, sortMethod, selectedTag, filteredData]);
 
 	// When sorting method has changed
 	const handleSortMethodChange = (e) => {

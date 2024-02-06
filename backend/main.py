@@ -79,7 +79,15 @@ async def get_events_by_name(clubName):
     response = await fetch_all_events_with_clubName(clubName)
     if response:
         return response
-    raise HTTPException(404, f"There is no club with the name {clubName}")
+    raise HTTPException(404, f"There is no events with the club {clubName}")
+
+@app.get("/api/events/date/{date}")
+async def get_events_by_date(date):
+    """Fetch events by date."""
+    response = await fetch_events_by_date(date)
+    if response:
+        return response
+    return []
 
 @app.get("/api/gallery/{clubname}")
 async def get_galleryimages_by_name(clubName):

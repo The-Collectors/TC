@@ -1,20 +1,16 @@
-// For designing ClubCard, we will have a seperate function.
+
 /**
- * @param clubname Represents the data file, csv or json, which holds the information of clubs.
- * @effect For each variable that club have, it will format the data into a box, which looks similar with table.
+ * @param eventName The name of the events
+ * @param eventDate Date or duaration of the events 
+ * 
  */
 
-import logo from './Logo.png';
-
-function ClubCard({
-	clubname,
-	headerColor = "#fff",
-	headerBg = "#4285F4",
-	headerStyle = {},
+function EventCard({
+	eventName,
+	eventDate,
 	shadow = true,
-	style = {},
 	...props
-}) {
+}){
 	return (
 		<div
 			className="card-business"
@@ -133,7 +129,8 @@ function ClubCard({
 				</tr>
 			</table>
 		</div>
-	);
+	)
 }
 
-export default ClubCard;
+export default EventCard;
+

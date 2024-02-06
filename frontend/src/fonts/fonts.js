@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
 import GlitchGoblinwoff from './GlitchGoblin-2O87v.woff';
@@ -12,6 +12,9 @@ import KodeMttf from './Kode-Medium.ttf';
 import KodeBwoff2 from './Kode-Bold.woff2';
 import KodeRwoff2 from './Kode-Regular.woff2';
 import KodeMwoff2 from './Kode-Medium.woff2';
+import QTBoulevardotf from './QTBoulevard.otf';
+import QTBoulevardwoff from './QTBoulevard.woff';
+import QTBoulevardttf from './QTBoulevard.ttf';
 
 export default createGlobalStyle`
     @font-face {
@@ -63,6 +66,17 @@ export default createGlobalStyle`
 			local('kodeB'),
 			url(${KodeBttf}) format('ttf'),
 			url(${KodeBwoff2}) format('woff2');
+		font-weight: 300;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Boulevard';
+		src:
+			local('Boulevard'),
+			url(${QTBoulevardotf}) format('otf'),
+			url(${QTBoulevardwoff}) format('woff'),
+			url(${QTBoulevardttf}) format('ttf');
 		font-weight: 300;
 		font-style: normal;
 	}
