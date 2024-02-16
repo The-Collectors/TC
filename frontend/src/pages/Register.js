@@ -43,30 +43,43 @@ const Register = () => {
 		// Log user input for debugging
 		console.log('Email:', email, 'Confirm Email:', confirmEmail, 'Password:', password, 'Confirm Password:', confirmPassword, 'RCSID:', rcsid);
 
-
-		// Send data to the server
-		try {
-			const response = await axios.post("http://localhost:8000/api/register", {
-				rcsid,
-				email,
-				password,
-			});
-
-			// Handle server response
-			if (response.status === 200) {
-				// Show a success message or redirect to the login page
-				alert("Registration successful! Please log in.");
-				navigate('/login');
-			} else {
-				// Handle registration error
-				alert("Registration failed. Please try again.");
-			}
-		} catch (error) {
-			console.error("Error during registration:", error);
-		}
-
-	};
-
+		        // Encrypt user data (Caesar cipher)
+				const udata = [rcsid, email, password];
+				const encryptedData = udata.map(item => {
+					let endata = "";
+					for (let j = 0; j < item.length; j++) {
+						let ascii = item.charCodeAt(j);
+						// Caesar cipher shift
+						ascii = ((ascii - 32 + 15) % 95) + 32; // Adjusted for printable ASCII range (32-126)
+						endata += String.fromCharCode(ascii);
+					}
+					return endata;
+				});
+		
+				// Extract the encrypted data
+				const [newRcsid, newEmail, newPassword] = encryptedData;
+		
+				// Send encrypted data to the server
+				try {
+					const response = await axios.post("http://localhost:8000/api/register", {
+						rcsid: newRcsid,
+						email: newEmail,
+						password: newPassword,
+					});
+		
+					// Handle server response
+					if (response.status === 200) {
+						// Show a success message or redirect to the login page
+						alert("Registration successful! Please log in.");
+						navigate('/login');
+					} else {
+						// Handle registration error
+						alert("Registration failed. Please try again.");
+					}
+				} catch (error) {
+					console.error("Error during registration:", error);
+				}
+			};
 
 	return (
 		<div className="register-page-wrapper" style={{ backgroundImage: `url(${backgroundImage})` }}>

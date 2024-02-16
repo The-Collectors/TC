@@ -207,20 +207,23 @@ function Manage_Clubs(props) {
 						justifyContent: 'center',
 						padding: '20px',
 					}}
-				>
+					>
 					<div
 						className="card-body"
 						style={{
-							width: '100%',
-							textAlign: 'center',
-							backgroundColor: '#ffffffd0',
-							borderRadius: '10px',
-							boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-							padding: '20px',
-							boxSizing: 'border-box',
-							marginLeft: '0',
+						width: '100%',
+						textAlign: 'center',
+						backgroundColor: '#ffffffd0',
+						borderRadius: '10px',
+						boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+						padding: '20px',
+						boxSizing: 'border-box',
+						marginLeft: '0',
 						}}
 					>
+						<h5 className="card text-white bg-dark mb-3">Manage Clubs</h5>
+						<div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+						<div>
 						<h5 className="card text-white bg-dark mb-3">Manage Clubs</h5>
 						<span>
 							<select
@@ -246,15 +249,34 @@ function Manage_Clubs(props) {
 								))}
 							</select>
 						</span>
+						</div>
+						<div style={{ display: 'flex', flexDirection: 'column' }}>
+						{/* 'Manage Events' button */}
+						<button
+							className="btn btn-outline-secondary mb-2" // Change the class name as needed
+							onClick={() => {/* handle navigation to Manage Events */}}
+							style={{ width: 'auto' }}
+							>
+							Manage Events
+						</button>
+						{/* 'Manage Gallery' button */}
+						<button
+							className="btn btn-outline-secondary" // Change the class name as needed
+							onClick={() => {/* handle navigation to Manage Gallery */}}
+							style={{ width: 'auto' }}
+							>
+						Manage Gallery
+						</button>
+					</div>
+					</div>
 						<div style={{ maxHeight: '520px', overflowY: 'auto', maxWidth: '100%', width: '100%' }}>
-							<ClubsView clubList={clubList} />
+						<ClubsView clubList={clubList} />
 						</div>
 					</div>
+					</div>
 				</div>
-			</div>
-		</div>
-	);
-}
-
+				</div>
+			);
+			};
 
 export default Manage_Clubs;

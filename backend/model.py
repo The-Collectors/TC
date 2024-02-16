@@ -33,7 +33,6 @@ class User(BaseModel):
     discord: Optional[str] = ""
 
 class LoginInput(BaseModel):
-<<<<<<< HEAD
   """Hold Information about email verification."""
   email: str
   password: str
@@ -43,8 +42,5 @@ class Gallery(BaseModel):
   image: str
   clubName: str
   description: str
-=======
-	"""Hold Information about email verification."""
-	email: str
-	password: str
->>>>>>> 24317b73bd3cfcbc4275df7e5748e1bf6f12d000
+  email: str
+  password: str

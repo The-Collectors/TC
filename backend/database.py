@@ -46,7 +46,6 @@ async def fetch_all_clubsorgs():
         clubs.append(Club(**document))
     return clubs
 
-<<<<<<< HEAD
 async def fetch_all_events():
     """Return a list of events in the database."""
     cursor = events_collection.find({})
@@ -76,8 +75,6 @@ async def create_galleryimage(image):
     await gallery_collection.insert_one(image)
     return image
 
-=======
->>>>>>> 24317b73bd3cfcbc4275df7e5748e1bf6f12d000
 async def create_club(club, create_org = False):
     """Add a specified club or organization to the database."""
     if create_org:
