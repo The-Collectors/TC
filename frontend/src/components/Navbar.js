@@ -55,6 +55,15 @@ function Navbar() {
 							<NavSubLink to="/Manage_Events">Manage Events</NavSubLink>
 						</NavDropdownMenu>
 					</NavDropdown>
+					<NavDropdown>
+						<NavLink to="#">
+							Gallery▿ <i className="fa fa-angle-down"></i>
+						</NavLink>
+						<NavDropdownMenu>
+							<NavSubLink to="/Gallery">Gallery</NavSubLink>
+							<NavSubLink to="/Manage_Gallery">Manage Gallery</NavSubLink>
+						</NavDropdownMenu>
+                	</NavDropdown>
 					<NavLink to="/Calendar">
 						Calendar
 					</NavLink>

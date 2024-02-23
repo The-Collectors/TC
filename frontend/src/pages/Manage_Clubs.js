@@ -254,7 +254,7 @@ function Manage_Clubs(props) {
 						{/* 'Manage Events' button */}
 						<button
 							className="btn btn-outline-secondary mb-2" // Change the class name as needed
-							onClick={() => {/* handle navigation to Manage Events */}}
+							onClick={() => { window.location.href = 'http://localhost:3000/Manage_Events'; }}
 							style={{ width: 'auto' }}
 							>
 							Manage Events
@@ -262,7 +262,7 @@ function Manage_Clubs(props) {
 						{/* 'Manage Gallery' button */}
 						<button
 							className="btn btn-outline-secondary" // Change the class name as needed
-							onClick={() => {/* handle navigation to Manage Gallery */}}
+							onClick={() => { window.location.href = 'http://localhost:3000/Manage_Gallery'; }}
 							style={{ width: 'auto' }}
 							>
 						Manage Gallery
