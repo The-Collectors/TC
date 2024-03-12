@@ -63,7 +63,7 @@ function Manage_Gallery() {
 
     // Post a gallery
     const addGalleryHandler = () => {
-        axios.post('http://localhost:8000/api/gallery', { 'image': image, 'clubName': clubName, 'description': description })
+        axios.post('http://localhost:8000/api/Gallery', { 'image': image, 'clubName': clubName, 'description': description })
             .then(res => {
                 console.log(res); // Log the response to the console
             })

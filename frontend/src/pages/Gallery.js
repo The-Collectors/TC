@@ -96,69 +96,69 @@ function Gallery() {
 
   // Rendering the gallery with club information
   return (
-    <div
-      className="container-fluid"
-      style={{
-        paddingTop: '80px',
-        backgroundImage: `url(${Bgimg})`,
-        backgroundRepeat: 'repeat',
-        backgroundPosition: 'center',
-        width: '100vw',
-        height: '100vh',
-        textAlign: 'center',
-      }}
-    >
-      <div
-        className="grid-container"
-        style={{
-          maxWidth: '1200px', // Set a specific width for the grid container
-          margin: '0 auto', // Center the grid container horizontally
-          padding: '20px',
-        }}
-      >
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-            gap: '20px',
-          }}
-        >
-          {/* Mapping through filtered data to display club information */}
-          {filtered.map((gallery) => (
-            <div key={gallery.clubName} style={{ textAlign: 'center' }}>
-            {/* Displaying club image or default logo */}
-            {gallery.image && (
-              <img
-                style={{
-                  width: '150px',
-                  height: '150px',
-                  objectFit: 'cover',
-                  borderRadius: '10px',
-                }}
-                src={gallery.image}
-                alt="uploaded image"
-              />
-            )} 
-            {!gallery.image && (
-              <img
-                style={{
-                  width: '150px',
-                  height: '150px',
-                  objectFit: 'cover',
-                  borderRadius: '10px',
-                }}
-                src={logo}
-                alt="default logo"
-              />
-            )}
-            {/* Displaying club name and description */}
-            <h3>{gallery.clubName}</h3>
-            <p>{gallery.description}</p>
-            </div>
-        ))}
-      </div>
-    </div>
-  </div>
+    // <div
+    //   className="container-fluid"
+    //   style={{
+    //     paddingTop: '80px',
+    //     backgroundImage: `url(${Bgimg})`,
+    //     backgroundRepeat: 'repeat',
+    //     backgroundPosition: 'center',
+    //     width: '100vw',
+    //     height: '100vh',
+    //     textAlign: 'center',
+    //   }}
+    // >
+  //     <div
+  //       className="grid-container"
+  //       style={{
+  //         maxWidth: '1200px', // Set a specific width for the grid container
+  //         margin: '0 auto', // Center the grid container horizontally
+  //         padding: '20px',
+  //       }}
+  //     >
+  //       <div
+  //         style={{
+  //           display: 'grid',
+  //           gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+  //           gap: '20px',
+  //         }}
+  //       >
+  //         {/* Mapping through filtered data to display club information */}
+  //         {filtered.map((gallery) => (
+  //           <div key={gallery.clubName} style={{ textAlign: 'center' }}>
+  //           {/* Displaying club image or default logo */}
+  //           {gallery.image && (
+  //             <img
+  //               style={{
+  //                 width: '150px',
+  //                 height: '150px',
+  //                 objectFit: 'cover',
+  //                 borderRadius: '10px',
+  //               }}
+  //               src={gallery.image}
+  //               alt="uploaded image"
+  //             />
+  //           )} 
+  //           {!gallery.image && (
+  //             <img
+  //               style={{
+  //                 width: '150px',
+  //                 height: '150px',
+  //                 objectFit: 'cover',
+  //                 borderRadius: '10px',
+  //               }}
+  //               src={logo}
+  //               alt="default logo"
+  //             />
+  //           )}
+  //           {/* Displaying club name and description */}
+  //           <h3>{gallery.clubName}</h3>
+  //           <p>{gallery.description}</p>
+  //           </div>
+  //       ))}
+  //     </div>
+  //   </div>
+  // </div>
 );
 }
 
