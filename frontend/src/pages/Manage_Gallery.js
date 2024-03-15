@@ -25,7 +25,7 @@ function Manage_Gallery() {
 
     // Read all galleries
     useEffect(() => {
-        axios.get('http://localhost:8000/api/gallery') // Fetching gallery data
+        axios.get('http://localhost:8000/api/Gallery') // Fetching gallery data
             .then(res => {
                 if (selectedTag !== '') {
                     setFilteredData(res.data.filter(gallery => gallery.tags.includes(selectedTag)));

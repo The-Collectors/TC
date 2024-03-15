@@ -3,7 +3,6 @@ import axios from 'axios'
 
 function GalleryItem(props) {
 
-  const [isActive, setActive] = useState('false');
   const [clubName, setClubName] = useState(props.Gallery.clubName)
   const [name, setName] = useState(props.Gallery.name)
   const [desc, setDesc] = useState(props.Gallery.description)
