@@ -42,5 +42,3 @@ class Gallery(BaseModel):
   image: str
   clubName: str
   description: str
-  email: str
-  password: str

@@ -18,7 +18,7 @@ function refreshPage() {
 function Gallery() {
 
 	const [sortOrder, setSortOrder] = useState('asc');
-	const [sortMethod, setSortMethod] = useState('name');
+	const [sortMethod, setSortMethod] = useState('clubName');
 	const [clubList, setClubList] = useState([])
 	const [selectedTag, setSelectedTag] = useState('');
 	const [tagList, setTagList] = useState([]);
@@ -31,12 +31,12 @@ function Gallery() {
 		setKeyword(searchWord);
 	}
 
-	// Read all clubss
+	// Read all clubs
 	useEffect(() => {
 		axios.get('http://localhost:8000/api/Gallery')
 			.then(res => {
 				const sortedData = res.data.sort((a, b) => {
-					return a.name.trim().localeCompare(b.name.trim());
+					return a.clubName.trim().localeCompare(b.clubName.trim());
 				});
 				setClubList(sortedData);
 			})
@@ -49,7 +49,7 @@ function Gallery() {
 			setFiltered(clubList)
 		} else {
 			const filteredData = clubList.filter((club) =>
-				`${club.name.toLowerCase()} ${club.description.toLowerCase()} ${club.tags.map((text) => (
+				`${club.clubName.toLowerCase()} ${club.description.toLowerCase()} ${club.tags.map((text) => (
 					`#${text}`
 				))}`.includes(keyword.toLowerCase()))
 			setFiltered(filteredData)
@@ -69,42 +69,18 @@ function Gallery() {
 				const sortedData = filteredData.sort((a, b) => {
 					if (sortMethod === 'nameAsc') {
 						if (sortOrder === 'asc') {
-							return a.name.localeCompare(b.name);
+							return a.clubName.localeCompare(b.clubName);
 						} else {
-							return b.name.localeCompare(a.name);
+							return b.clubName.localeCompare(a.clubName);
 						}
 					} else if (sortMethod === 'nameDesc') {
 						if (sortOrder === 'asc') {
-							return b.name.localeCompare(a.name);
+							return b.clubName.localeCompare(a.clubName);
 						} else {
-							return a.name.localeCompare(b.name);
-						}
-					} else if (sortMethod === 'sizeAsc') {
-						if (sortOrder === 'asc') {
-							return a.size - b.size || a.name.localeCompare(b.name);
-						} else {
-							return b.size - a.size || b.name.localeCompare(a.name);
-						}
-					} else if (sortMethod === 'sizeDesc') {
-						if (sortOrder === 'asc') {
-							return b.size - a.size || a.name.localeCompare(b.name);
-						} else {
-							return a.size - b.size || b.name.localeCompare(a.name);
-						}
-					} else if (sortMethod === 'Active') {
-						if (sortOrder === 'asc') {
-							return 1 || a.name.localeCompare(b.name);
-						} else {
-							return -1 || b.name.localeCompare(a.name);
-						}
-					} else if (sortMethod === 'Inactive') {
-						if (sortOrder === 'asc') {
-							return -1 || a.name.localeCompare(b.name);
-						} else {
-							return 1 || b.name.localeCompare(a.name);
+							return a.clubName.localeCompare(b.clubName);
 						}
 					} else {
-						return a.name.localeCompare(b.name);
+						return a.clubName.localeCompare(b.clubName);
 					}
 				});
 				const uniqueItems = [];

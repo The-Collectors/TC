@@ -100,7 +100,7 @@ function Manage_Gallery() {
 
 	// Post a club
 	const addGalleryHandler = () => {
-		axios.post('http://localhost:8000/api/gallery', { 'clubName': clubName, 'name': name, 'description': desc, 'date': moment(date).tz("America/New_York").format("YYYY-MM-DDTHH:mm:ssZ"), 'image': image })
+		axios.post('http://localhost:8000/api/gallery', { 'image': image, 'clubName': name, 'description': desc})
 			.then(res => console.log(res))
 	}
 
@@ -114,7 +114,6 @@ function Manage_Gallery() {
 						<input type="text" className="mb-2 form-control nameIn" onChange={gallery => setName(gallery.target.value)} placeholder='Name' />
 						<input type="text" className="mb-2 form-control nameIn" onChange={gallery => setClubName(gallery.target.value)} placeholder='Club Name' />
 						<input type="text" className="mb-2 form-control desIn" onChange={gallery => setDesc(gallery.target.value)} placeholder='Description' />
-						<DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="yyyy/MM/dd HH:mm:ss" />
 						<input type="file" accept="image/*" onChange={handleImageChange} />
 						<button className="btn btn-outline-primary mx-2 mb-3" style={{ 'borderRadius': '50px', "font-weight": "bold" }}>Add Gallery</button>
 					</span>
