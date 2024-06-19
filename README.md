@@ -50,6 +50,10 @@ Directions for launching the project once the necessary packages have been insta
 3. To see the list of clubs in the database, start MongoDB and connect to the localhost database (default - should be saved). You will see *The Collectors* database on the left hand side.
 
 
+## Deploying
+Deploying can be vary depend on the host use. Please refer to react's deployment guide.
+
+
 ## Helpful Links and Tips
 
 ### Frontend Styling
